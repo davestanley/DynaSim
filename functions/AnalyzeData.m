@@ -1,5 +1,21 @@
 function result=AnalyzeData(data,func,varargin)
-%% result=AnalyzeData(data,func,'option1',value1,...)
+% THIS IS A TEST PART OF THE DOCSTRING
+% Manage simulation of a DynaSim model. This high-level function offers many
+% options to control the number of simulations, how the model is optionally
+% varied across simulations, and how the numerical integration is performed. It
+% can optionally save the simulated data and create/submit simulation jobs to a
+% compute cluster. :func:`src.SimulateModel` you can cite functions inside functions
+%
+% :param model: DynaSim model structure or equations (see GenerateModel and
+%               CheckModel for more details)
+%
+% :param varargin: any of the options listed below provided as key/value pairs,
+%                  e.g. `SimulateModel(model,'option_name1',option_value1,'option_name2',option_value2...)`
+%
+
+
+
+% result=AnalyzeData(data,func,'option1',value1,...)
 % purpose: pass a single DynaSim data structure or an array of data
 % structures to a user-specified analysis function, add varied info to the
 % results and optionally save the output structure.

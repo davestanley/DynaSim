@@ -1,0 +1,2348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to DynaSim’s documentation! &mdash; DynaSim 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="DynaSim 0.2 documentation" href="#" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-dynasim-s-documentation">
+<h1>Welcome to DynaSim&#8217;s documentation!<a class="headerlink" href="#welcome-to-dynasim-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<p>Apparently need to reference everything to a &#8220;module&#8221; for the autodocumentation to work.</p>
+<p>Let&#8217;s look at a link to <code class="xref mat mat-func docutils literal"><span class="pre">dynasim.AnalyzeData()</span></code> since it&#8217;s a good function. It works! Links need to be indicated by their module!</p>
+<p>functions
+^^^</p>
+<span class="target" id="module-functions"></span><dl class="function">
+<dt id="functions.AnalyzeData">
+<code class="descclassname">functions.</code><code class="descname">AnalyzeData</code><span class="sig-paren">(</span><em>data</em>, <em>func</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.AnalyzeData" title="Permalink to this definition">¶</a></dt>
+<dd><p>THIS IS A TEST PART OF THE DOCSTRING
+Manage simulation of a DynaSim model. This high-level function offers many
+options to control the number of simulations, how the model is optionally
+varied across simulations, and how the numerical integration is performed. It
+can optionally save the simulated data and create/submit simulation jobs to a
+compute cluster. <code class="xref mat mat-func docutils literal"><span class="pre">src.SimulateModel()</span></code> you can cite functions inside functions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>model</strong> &#8211; DynaSim model structure or equations (see GenerateModel and
+CheckModel for more details)</li>
+<li><strong>varargin</strong> &#8211; any of the options listed below provided as key/value pairs,
+e.g. <cite>SimulateModel(model,&#8217;option_name1&#8217;,option_value1,&#8217;option_name2&#8217;,option_value2...)</cite></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>result=AnalyzeData(data,func,&#8217;option1&#8217;,value1,...)
+purpose: pass a single DynaSim data structure or an array of data
+structures to a user-specified analysis function, add varied info to the
+results and optionally save the output structure.</p>
+<dl class="docutils">
+<dt>inputs:</dt>
+<dd><p class="first">data: DynaSim data structure (also accepted: data file name)
+func: function handle pointing to analysis function
+options:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>key/value pairs passed on to the analysis function</li>
+<li>&#8216;save_results_flag&#8217; (0 or 1) (default: 0): whether to save result</li>
+<li>&#8216;result_file&#8217; (default: &#8216;result.mat&#8217;): where to save result</li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>outputs:</dt>
+<dd>result: structure returned by the analysis function</dd>
+</dl>
+<p>see also: SimulateModel
+todo: annotate figures with data set-specific modifications
+check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.AnalyzeStudy">
+<code class="descclassname">functions.</code><code class="descname">AnalyzeStudy</code><span class="sig-paren">(</span><em>data</em>, <em>func</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.AnalyzeStudy" title="Permalink to this definition">¶</a></dt>
+<dd><p>[results,studyinfo]=AnalyzeStudy(data,func,varargin)
+purpose: apply the same user-specified analysis function to each element
+of data structure. intended for use with results from simulation studies
+varying some aspect of the model or inputs.
+inputs:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>data: DynaSim data structure with one or more elements</dt>
+<dd>also accepted: data file name, list of data files, studyinfo structure, study_dir, or studyinfo file</dd>
+</dl>
+<p>func: function handle pointing to analysis function (or cell array of function handles)
+options: key/value pairs passed on to the analysis function.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd>results: array of structures returned by the analysis function</dd>
+</dl>
+<p>todo: annotate figures with data set-specific modifications</p>
+<p>see also: SimulateModel, CalcFR
+check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ApplyModifications">
+<code class="descclassname">functions.</code><code class="descname">ApplyModifications</code><span class="sig-paren">(</span><em>model</em>, <em>modifications</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ApplyModifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>model=ApplyModifications(model,modifications)
+Purpose: apply modifications to DynaSim specification or model structure.</p>
+<blockquote>
+<div>ApplyModifications() returns the same kind of structure with
+modifications applied. In all cases it first modifies the specification
+(model.specification if input is a model structure). Then it returns
+the modified specification or regenerates the model using the new
+specification.</div></blockquote>
+<dl class="docutils">
+<dt>Inputs: </dt>
+<dd><ul class="first last simple">
+<li>DynaSim model or specification structure 
+(see CheckModel and CheckSpecification for details)</li>
+<li>modifications: modifications to make to specification structure
+{X,Y,Z; X,Y,Z; ...}
+X = population name or connection source-&gt;target
+Y = thing to modify (&#8216;name&#8217;, &#8216;size&#8217;, or parameter name)
+set Y=Z if Y = name, size, or value
+Note: (X1,X2) or (Y1,Y2): modify these simultaneously in the same way</li>
+</ul>
+</dd>
+</dl>
+<p>Examples: modifying population size and parameters
+modifications={&#8216;E&#8217;,&#8217;size&#8217;,5; &#8216;E&#8217;,&#8217;gNa&#8217;,120};
+model=ApplyModifications(model,modifications);</p>
+<p>Examples: modifying mechanism_list
+m=ApplyModifications(<a class="reference external" href="mailto:'dv/dt=10+&#37;&#52;&#48;current">'dv/dt=10+<span>&#64;</span>current</a>; {iNa,iK}&#8217;,...</p>
+<blockquote>
+<div>{&#8216;pop1&#8217;,&#8217;mechanism_list&#8217;,&#8217;-iNa&#8217;});</div></blockquote>
+<p>m.populations.mechanism_list
+m=ApplyModifications(<a class="reference external" href="mailto:'dv/dt=10+&#37;&#52;&#48;current">'dv/dt=10+<span>&#64;</span>current</a>; {iNa,iK}&#8217;,...</p>
+<blockquote>
+<div>{&#8216;pop1&#8217;,&#8217;mechanism_list&#8217;,&#8217;+iCa&#8217;});</div></blockquote>
+<p>m.populations.mechanism_list
+m=ApplyModifications(<a class="reference external" href="mailto:'dv/dt=10+&#37;&#52;&#48;current">'dv/dt=10+<span>&#64;</span>current</a>; {iNa,iK}&#8217;,...</p>
+<blockquote>
+<div>{&#8216;pop1&#8217;,&#8217;mechanism_list&#8217;,&#8217;+(iCa,iCan,CaBuffer)&#8217;});</div></blockquote>
+<p>m.populations.mechanism_list</p>
+<p>Examples: modifying equations (using special &#8220;cat()&#8221; operator or direct substitution)
+m=ApplyModifications(<a class="reference external" href="mailto:'dv/dt=10+&#37;&#52;&#48;current">'dv/dt=10+<span>&#64;</span>current</a>; {iNa,iK}&#8217;,...</p>
+<blockquote>
+<div>{&#8216;pop1&#8217;,&#8217;equations&#8217;,&#8217;cat(dv/dt,+I)&#8217;});</div></blockquote>
+<p>m.populations.equations
+m=ApplyModifications(&#8216;dv/dt=I(t)+&#64;current; I(t)=10; {iNa,iK}&#8217;,...</p>
+<blockquote>
+<div>{&#8216;pop1&#8217;,&#8217;equations&#8217;,&#8217;cat(I(t),+sin(2*pi*t))&#8217;});</div></blockquote>
+<p>m.populations.equations
+m=ApplyModifications(&#8216;dv/dt=I(t)+&#64;current; I(t)=10; {iNa,iK}&#8217;,...</p>
+<blockquote>
+<div>{&#8216;pop1&#8217;,&#8217;equations&#8217;,&#8217;<a class="reference external" href="mailto:dv/dt=10+&#37;&#52;&#48;current">dv/dt=10+<span>&#64;</span>current</a>&#8216;});</div></blockquote>
+<p>m.populations.equations
+m.populations.mechanism_list</p>
+<dl class="docutils">
+<dt>Examples: modifying equations with reserved keywords &#8220;ODEn&#8221; and &#8220;FUNCTIONn&#8221;</dt>
+<dd>Note:
+&#8216;ODEn&#8217; = reserved keyword referencing the n-th ODE in equations
+&#8216;ODE&#8217; = aliases ODE1
+similarly: &#8216;FUNCTIONn&#8217; and &#8216;FUNCTION&#8217;</dd>
+<dt>m=ApplyModifications(<a class="reference external" href="mailto:'dv/dt=10+&#37;&#52;&#48;current">'dv/dt=10+<span>&#64;</span>current</a>; {iNa,iK}&#8217;,...</dt>
+<dd>{&#8216;pop1&#8217;,&#8217;equations&#8217;,&#8217;cat(ODE,+I)&#8217;});</dd>
+</dl>
+<p>m.populations.equations
+m=ApplyModifications(<a class="reference external" href="mailto:'dv/dt=10+&#37;&#52;&#48;current">'dv/dt=10+<span>&#64;</span>current</a>; du/dt=-u; {iNa,iK}&#8217;,...</p>
+<blockquote>
+<div>{&#8216;pop1&#8217;,&#8217;equations&#8217;,&#8217;cat(ODE2,+I)&#8217;});</div></blockquote>
+<p>m.populations.equations
+m=ApplyModifications(&#8216;dv/dt=I(t)+&#64;current; I(t)=10; {iNa,iK}&#8217;,...</p>
+<blockquote>
+<div>{&#8216;pop1&#8217;,&#8217;equations&#8217;,&#8217;cat(FUNCTION,+sin(2*pi*t))&#8217;});</div></blockquote>
+<p>m.populations.equations</p>
+<p>See also: GenerateModel, SimulateModel, Vary2Modifications
+check for modifications</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CalcCellProperties">
+<code class="descclassname">functions.</code><code class="descname">CalcCellProperties</code><span class="sig-paren">(</span><em>data</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CalcCellProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>stats = CalcCellProperties(data,&#8217;option1&#8217;,option1,...)
+This analysis function calculates the intrinsic electrophysiological 
+properties of all cells in one or more populations. It is designed to be 
+used in conjunction with the experiment &#8220;ProbeCellProperties&#8221; which 
+removes all connections from a model and produces a data array of 
+simulated data in response to a series of hyperpolarizing and 
+depolarizing pulses.</p>
+<p>Inputs:
+- data &#8211; array of DynaSim data structures returned by ProbeCellProperties</p>
+<p>Properties measured:
+- RMP: resting membrane potential [mV]</p>
+<blockquote>
+<div>Method: ... (see [1])</div></blockquote>
+<ul class="simple">
+<li>...</li>
+</ul>
+<p>References for methods used:
+[1] ...</p>
+<p>Example: ...
+data = ProbeCellProperties(model)
+stats = CalcCellProperties(data)</p>
+<p>Note: this function is based on the DNSim experiment &#8220;cell_pulses&#8221;.
+See also: ProbeCellProperties
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CalcFR">
+<code class="descclassname">functions.</code><code class="descname">CalcFR</code><span class="sig-paren">(</span><em>data</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CalcFR" title="Permalink to this definition">¶</a></dt>
+<dd><p>data = CalcFR(data,&#8217;option&#8217;,value)
+Inputs:</p>
+<blockquote>
+<div><p>data - DynaSim data structure (see CheckData)
+options:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8216;variable&#8217; - name of field containing data on which to calculate firing</dt>
+<dd>rates (default: <a href="#id1"><span class="problematic" id="id2">*</span></a>_spikes or first variable in data.labels)</dd>
+</dl>
+<p>&#8216;threshold&#8217; - scalar threshold value for detecting events (default: 0)
+&#8216;bin_size&#8217; - size of temporal window over which to calculate rate [ms or fraction of data set] (default: 5% of the data set)
+&#8216;bin_shift&#8217; - how much to shift the bin before calculating rate again [ms or fraction of data set] (default: 1% of the data set)
+&#8216;exclude_data_flag&#8217; - whether to remove simulated data from result structure (default: 0)</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="docutils">
+<dt>Outputs:</dt>
+<dd>data: data structure with firing rates [Hz] in .variable_FR</dd>
+</dl>
+<p>note:
+&#8220;variable&#8221; can be specified as the name of a variable listed in
+data.labels, a cell array of string listing variable names, or as a 
+regular expression pattern for identifying variables to process.
+See SelectVariables for more info on supported specifications.</p>
+<p>note:
+DynaSim spike monitor returns spike data in variables <a href="#id3"><span class="problematic" id="id4">*</span></a>_spikes.
+eg, data=SimulateModel(<a class="reference external" href="mailto:'dv/dt=&#37;&#52;&#48;current+10">'dv/dt=<span>&#64;</span>current+10</a>; {iNa,iK}; monitor v.spikes&#8217;);</p>
+<blockquote>
+<div>returns spikes in data.pop1_v_spikes (where &#8216;pop1&#8217; is the default
+population name if not specified by the user).</div></blockquote>
+<p>Examples:
+s.populations(1).name=&#8217;E&#8217;;
+s.populations(1).equations=&#8217;<a class="reference external" href="mailto:dv/dt=&#37;&#52;&#48;current+10">dv/dt=<span>&#64;</span>current+10</a>; {iNa,iK}; v(0)=-65&#8217;;
+s.populations(2).name=&#8217;I&#8217;;
+s.populations(2).equations=&#8217;<a class="reference external" href="mailto:dv/dt=&#37;&#52;&#48;current+10">dv/dt=<span>&#64;</span>current+10</a>; {iNa,iK}; v(0)=-65&#8217;;
+data=SimulateModel(s);
+data=CalcFR(data,&#8217;variable&#8217;,&#8217;<a href="#id5"><span class="problematic" id="id6">*</span></a>_v&#8217;);
+data % contains firing rates for E and I pops in .E_v_FR and .I_v_FR.</p>
+<p>See also: PlotFR, AnalyzeStudy, SimulateModel, CheckData, SelectVariables
+1.0 Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CalcPower">
+<code class="descclassname">functions.</code><code class="descname">CalcPower</code><span class="sig-paren">(</span><em>data</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CalcPower" title="Permalink to this definition">¶</a></dt>
+<dd><p>data = CalcPower(data,&#8217;option&#8217;,value)
+Inputs:</p>
+<blockquote>
+<div><p>data - DynaSim data structure (see CheckData)
+options:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8216;variable&#8217; - name of field containing data on which to calculate firing</dt>
+<dd>rates (default: <a href="#id7"><span class="problematic" id="id8">*</span></a>_spikes or first variable in data.labels)</dd>
+</dl>
+<p>&#8216;time_limits&#8217; - [beg,end] (units of data.time)
+&#8216;smooth_factor&#8217; - number of samples for smoothing the spectrum (default: 5)</p>
+<blockquote>
+<div>tip: set to 1 to avoid smoothing.</div></blockquote>
+</div></blockquote>
+<dl class="docutils">
+<dt>options for peak detection:</dt>
+<dd>&#8216;min_peak_frequency&#8217; - Hz, min frequency for peak detection (default: 2)
+&#8216;max_peak_frequency&#8217; - Hz, max frequency for peak detection (default: 150)
+&#8216;peak_threshold_prctile&#8217; percentile for setting power threshold for peak detection (default: 95)
+&#8216;peak_area_width&#8217; - Hz, size of frequency bin (centered on peak) over which to calculate area under spectrum (default: 5)
+&#8216;exclude_data_flag&#8217; - whether to remove simulated data from result structure (default: 0)</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>Outputs:</dt>
+<dd><dl class="first last docutils">
+<dt>data: data structure with spectral power in data.VARIABLE_Power_SUA.Pxx</dt>
+<dd>data.VARIABLE_Power_SUA.PeakFreq: frequency of spectral power (one value per cell)
+data.VARIABLE_Power_SUA.PeakArea: area under spectrum around peak (one value per cell)</dd>
+<dt>NOTE: for populations: spectrum of the mean waveform is stored in </dt>
+<dd>data.VARIABLE_Power_MUA.Pxx. population mean spectrum of the individual
+waveforms can be calculated as mean(data.VARIABLE_Power_MUA.Pxx,2).</dd>
+</dl>
+</dd>
+</dl>
+<p>organization scheme for spectral results:
+data.VARIABLE_Power_SUA.(Pxx,PeakFreq,PeakArea,frequency)
+data.VARIABLE_Power_MUA.(Pxx,PeakFreq,PeakArea,frequency)</p>
+<p>note:
+&#8220;variable&#8221; can be specified as the name of a variable listed in
+data.labels, a cell array of string listing variable names, or as a 
+regular expression pattern for identifying variables to process.
+See SelectVariables for more info on supported specifications.</p>
+<p>Examples:
+s=[];
+s.populations(1).name=&#8217;E&#8217;;
+s.populations(1).equations=&#8217;dv[2]/<a class="reference external" href="mailto:dt=&#37;&#52;&#48;current+10">dt=<span>&#64;</span>current+10</a>; {iNa,iK}; v(0)=-65&#8217;;
+s.populations(2).name=&#8217;I&#8217;;
+s.populations(2).equations=&#8217;<a class="reference external" href="mailto:dv/dt=&#37;&#52;&#48;current+10">dv/dt=<span>&#64;</span>current+10</a>; {iNa,iK}; v(0)=-65&#8217;;
+data=SimulateModel(s,&#8217;tspan&#8217;,[0 1000]);
+data=CalcPower(data,&#8217;variable&#8217;,&#8217;v&#8217;);
+% Plot the spectrum of the E-cell average population voltage
+figure; plot(data.E_v_Power_MUA.frequency,data.E_v_Power_MUA.Pxx); 
+xlabel(&#8216;frequency (Hz)&#8217;); ylabel(&#8216;power&#8217;); xlim([0 200]);</p>
+<p>See also: PlotPower, AnalyzeStudy, SimulateModel, CheckData, SelectVariables
+1.0 Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CheckData">
+<code class="descclassname">functions.</code><code class="descname">CheckData</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CheckData" title="Permalink to this definition">¶</a></dt>
+<dd><p>data=CheckData(data)
+Purpose: standardize data structure and auto-populate missing fields
+Input: DynaSim data structure, data matrix [time x cells], or cell array of data matrices
+Output: DynaSim data structure (standardized)</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>DynaSim data structure:</dt>
+<dd>data.labels           : list of state variables and monitors recorded
+data.(state_variables): state variable data matrix [time x cells]
+data.(monitors)       : monitor data matrix [time x cells]
+data.time             : time vector [time x 1]
+data.simulator_options: simulator options used to generate simulated data
+data.model            : model used to generate simulated data
+[data.varied]         : list of varied model components
+[data.results]        : list of derived data sets created by post-processing</dd>
+</dl>
+</div></blockquote>
+<p>See also: SimulateModel, ImportData, ExportData
+check data type</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CheckHostPaths">
+<code class="descclassname">functions.</code><code class="descname">CheckHostPaths</code><span class="sig-paren">(</span><em>studyinfo</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CheckHostPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Purpose: compare paths on host to those set in studyinfo when batch was
+created.
+Inputs:</p>
+<blockquote>
+<div><ul class="simple">
+<li>studyinfo: DynaSim studyinfo structure</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>Outputs</dt>
+<dd><ul class="first last simple">
+<li>matched: {0 or 1} (whether the paths match or not)</li>
+</ul>
+</dd>
+</dl>
+<p>Paths compared:
+- path to DynaSim functions
+- path to model files
+call CheckHostPaths() in job.m before first simulation to make sure the 
+paths on the compute matchine match those in studyinfo created when the 
+study was began. 
+if paths do not match, an informative error message is added to
+.error_log (see CreateBatch() or any jobX.m script).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CheckModel">
+<code class="descclassname">functions.</code><code class="descname">CheckModel</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CheckModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>model=CheckModel(model)
+Purpose: standardize model structure and auto-populate missing fields
+Input: DynaSim model structure or equations
+Output: DynaSim model structure (standardized)</p>
+<dl class="docutils">
+<dt>DynaSim model structure:</dt>
+<dd><p class="first">model.parameters      : substructure with model parameters
+model.fixed_variables : substructure with fixed variable definitions
+model.functions       : substructure with function definitions
+model.monitors        : substructure with monitor definitions
+model.state_variables : cell array listing state variables
+model.ODEs            : substructure with one ordinary differential</p>
+<blockquote>
+<div>equation (ODE) per state variable</div></blockquote>
+<dl class="docutils">
+<dt>model.ICs <span class="classifier-delimiter">:</span> <span class="classifier">substructure with initial conditions (ICs) for </span></dt>
+<dd>each state variable</dd>
+<dt>model.conditionals(i) <span class="classifier-delimiter">:</span> <span class="classifier">structure array with each element indicating</span></dt>
+<dd>conditional actions specified in subfields 
+&#8220;condition&#8221;,&#8221;action&#8221;,&#8221;else&#8221; (see NOTE 1)</dd>
+<dt>model.linkers(i) <span class="classifier-delimiter">:</span> <span class="classifier">structure array with each element indicating</span></dt>
+<dd><blockquote class="first">
+<div>an &#8220;expression&#8221; that should be inserted 
+(according to &#8220;operation&#8221;) into any equations 
+where the &#8220;target&#8221; appears. (see NOTE 2)</div></blockquote>
+<p class="last">.target    : string giving the target where expression should be inserted
+.expression: string giving the expression to insert
+.operation : string giving the operation to use to insert expression</p>
+</dd>
+</dl>
+<p class="last">model.comments{i}     : cell array of comments found in model files
+model.specification   : specification used to generate the model (see CheckSpecification)
+model.namespaces      : (see NOTE 3)</p>
+</dd>
+</dl>
+<p>NOTE 1: &#8220;action&#8221; may include multiple statements separated by semicolons.
+&#8220;condition&#8221; must be an expression that evaluates to true or false.</p>
+<p>NOTE 2: &#8220;linkers&#8221; are used only when a model contains external model
+files. Equations and state variables defined in external files can be
+combined with equations in other model files (associated with the same
+population) or population equations in the specification. Recommended
+practice is to begin targets with the &#8216;&#64;&#8217; character.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Example: linking mechanism to equations in specification:</dt>
+<dd>...</dd>
+<dt>Example: linking mechanism to equations in a different mechanism:</dt>
+<dd>...</dd>
+</dl>
+</div></blockquote>
+<p>NOTE 3: all variables and functions have prefixes added to them that
+indicate their namespace; a mapping from original names found in
+equations to the names appearing in the model structure is available in 
+model.namespaces. 
+Namespaces in the model structure:</p>
+<blockquote>
+<div>model.parameters      .([namespace param_name])=expression
+model.fixed_variables .([namespace var_name])=expression
+model.functions       .([namespace func_name])=&#64;(variables)expression
+model.monitors        .([namespace monitor_name])=expression
+model.state_variables = {namespace_var1,namespace_var2,...}
+model.ODEs            .([namespace state_variable])=expression
+model.ICs             .([namespace state_variable])=expression
+model.conditionals(i) .namespace,condition,action,else
+model.linkers(i)      .namespace,target,expression,operation
+model.comments{i}     string
+.specification,.namespaces</div></blockquote>
+<p>Example 1: obtain empty model structure with all fields
+model=CheckModel([])</p>
+<p>Example 2: standardize existing model
+model=CheckModel(model)</p>
+<p>see also: GenerateModel, CheckSpecification, CheckData</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CheckOptions">
+<code class="descclassname">functions.</code><code class="descname">CheckOptions</code><span class="sig-paren">(</span><em>options</em>, <em>options_schema</em>, <em>strict</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CheckOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>options = CheckOptions(keyvals, options_schema, [strict])
+Purpose: organize key/value pairs in structure with default or 
+user-supplied values according to a schema.
+Inputs:</p>
+<blockquote>
+<div><p>keyvals: list of key/value pairs (&#8216;option1&#8217;,value1,&#8217;option2&#8217;,value2,...)
+options_schema: cell array containing 3 values per known &#8216;option&#8217;:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">option name</p>
+</li>
+<li><p class="first">default value</p>
+</li>
+<li><dl class="first docutils">
+<dt>allowed values</dt>
+<dd><p class="first last">vector of true/false values
+vector of min/max values
+vector of allowed values (more than 2 elements)
+cell array of allowed values
+empty to specify no limitations.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>strict: whether to fail if options not specified in the options_schema </dt>
+<dd>are found. (default: true)</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>Outputs: </dt>
+<dd>options: structure with options (using default values if not supplied)</dd>
+</dl>
+<p>See also: Options2Keyval, CheckSpecification, CheckModel, CheckData
+note: this function was adapted from one developed &#8220;in-house&#8221; years ago...</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CheckSolverOptions">
+<code class="descclassname">functions.</code><code class="descname">CheckSolverOptions</code><span class="sig-paren">(</span><em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CheckSolverOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>purpose: standardize simulation options appended to params.mat
+- use to achieve consistent params.mat whether created by SimulateModel(),
+WriteDynaSimSolver(), or WriteMatlabSolver().
+standardize and set defaults</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CheckSpecification">
+<code class="descclassname">functions.</code><code class="descname">CheckSpecification</code><span class="sig-paren">(</span><em>specification</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CheckSpecification" title="Permalink to this definition">¶</a></dt>
+<dd><p>specification=CheckSpecification(specification)
+Purpose: standardize specification structure and auto-populate missing fields
+Input: DynaSim specification structure or equations
+Output: DynaSim specification structure (standardized)</p>
+<p>DynaSim specification structure
+.populations(i) (required): contains info for defining independent</p>
+<blockquote>
+<div><blockquote>
+<div>population models</div></blockquote>
+<p>.name (default: &#8216;pop1&#8217;)      : name of population
+.size (default: 1)           : number of elements in population (i.e., # cells)
+.equations (required)        : string listing equations (see NOTE 1)
+.mechanism_list (default: []): cell array listing mechanisms (see NOTE 2)
+.parameters (default: [])    : parameters to assign across all equations in</p>
+<blockquote>
+<div>the population. provide as cell array list of key/value pairs
+{&#8216;param1&#8217;,value1,&#8217;param2&#8217;,value2,...}</div></blockquote>
+<dl class="docutils">
+<dt>.conditionals (default: []) <span class="classifier-delimiter">:</span> <span class="classifier">(see NOTE 3) if-then conditional actions</span></dt>
+<dd><dl class="first docutils">
+<dt>.namespace (auto) <span class="classifier-delimiter">:</span> <span class="classifier">string giving the namespace of the condition </span></dt>
+<dd>(<a href="#id19"><span class="problematic" id="id20">pop_</span></a> or <a href="#id21"><span class="problematic" id="id22">pop_mech_</span></a>)</dd>
+</dl>
+<p class="last">.condition (required): string giving the condition to check
+.action (required)   : what to do if the condition is met
+.else (default: [])  : what to do if the condition is not met</p>
+</dd>
+<dt>.monitors (default: []) <span class="classifier-delimiter">:</span> <span class="classifier">(see NOTE 3) substructure with fields specifying what to</span></dt>
+<dd>record on each step of numerical integration in addition to state variables.</dd>
+</dl>
+<p>.model (default: [])   : optional DynaSim model structure</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>.connections(i) (default: []): contains info for linking population models</dt>
+<dd><p class="first">.source (required if &gt;1 pops): name of source population (see NOTE 7)
+.target (required if &gt;1 pops): name of target population
+.mechanism_list (required)   : list of mechanisms that link two populations
+.parameters (default: [])    : parameters to assign across all equations in</p>
+<blockquote class="last">
+<div>mechanisms in this connection&#8217;s mechanism_list.</div></blockquote>
+</dd>
+</dl>
+<p>NOTE 1: .equations can be an equation string, cell array listing
+equation strings, or a file name pointing to a model / equations stored
+on disk (accepted file types: .eqns (equations of population), 
+.m (function defining a model structure), ...)</p>
+<p>NOTE 2: .mechanism_list is a cell array listing names of mechanisms to be
+included in the population or used to connect two populations. each
+mechanism name must have a mechanism file with the same name somewhere in
+the search path (the file should have extension .mech). The search path
+starts with the current directory, then the subdirectories of
+[dynasim]/models, and lastly the full matlab search path.</p>
+<p>NOTE 3: conditionals and monitors are most easily specified by including
+them in .equations.
+e.g.) spec.populations.equations=&#8217;dv/dt=-v; if(v&lt;eps)(v=10); monitor o=v^2&#8217;</p>
+<blockquote>
+<div>data=SimulateModel(spec); figure; plot(data.time,data.pop1_o);</div></blockquote>
+<p>NOTE 4: &#8220;pops&#8221; can be used instead of &#8220;populations&#8221;. &#8220;cons&#8221; can be used
+instead of &#8220;connections&#8221;.</p>
+<p>NOTE 5: all population info can be embedded in the equation string.
+Specify name by starting the string with &#8216;NAME: <a href="#id9"><span class="problematic" id="id10">*</span></a>&#8216; (e.g., &#8216;E: dv/dt=-v&#8217;).
+Specify size by including [SIZE] after the state variable (e.g., &#8216;dv[5]/dt=-v&#8217;).
+Specify mechanism_list by including cell array listing mechanism names
+without single quotes (e.g., <a class="reference external" href="mailto:'dv/dt=&#37;&#52;&#48;current">'dv/dt=<span>&#64;</span>current</a>; {iNa,iK}&#8217;).</p>
+<p>NOTE 6: the mechanism linker target IDENTIFIER used to link mechanism variables and
+functions to population equations can be overriden by including
+&#64;NEWIDENTIFIER in the equations and after the mechanism name. (e.g.,
+&#8216;dv/dt=&#64;M; {iNa,iK}&#64;M&#8217;; or .mechanism_list={&#8216;iNa&#64;M&#8217;,&#8217;iK&#64;M&#8217;}).</p>
+<p>NOTE 7: &#8220;direction&#8221; can be used instead of &#8220;source&#8221; and &#8220;target&#8221;. The
+syntax is &#8220;SOURCE-&gt;TARGET&#8221; or &#8220;TARGET&lt;-SOURCE&#8221;. Either will be properly
+split into .source and .target fields. SOURCE and TARGET must be existing
+population names.</p>
+<p>Example 1: obtain empty specification structure with all fields
+specification=CheckSpecification([]);</p>
+<p>Example 2: standardize existing specification
+specification=CheckSpecification(specification)</p>
+<p>Example 3: standardize equations in cell array
+eqns={</p>
+<blockquote>
+<div>&#8216;s=10; r=27; b=2.666&#8217;;
+&#8216;dx/dt=s*(y-x)&#8217;;
+&#8216;dy/dt=r*x-y-x*z&#8217;;
+&#8216;dz/dt=-b*z+x*y&#8217;;</div></blockquote>
+<p>specification=CheckSpecification(eqns);</p>
+<p>Example 4: standardize equations in character array
+eqns=&#8217;tau=10; R=10; E=-70; dV/dt=(E-V+R*1.55)/tau; if(V&gt;-55)(V=-75)&#8217;;
+specification=CheckSpecification(eqns);</p>
+<p>Example 5: standardize specification with compact field names
+s.pops.size=10;
+s.pops.equations=&#8217;dv/dt=-v&#8217;;
+s.cons.mechanism_list=&#8217;iGABAa&#8217;;
+s=CheckSpecification(s)</p>
+<p>Example 6: standardize specification with everything in equation string
+s.pops.equations=&#8217;E:dv[10]/dt=&#64;M+I; {iNa,iK}&#64;M; I=10&#8217;;
+s=CheckSpecification(s)</p>
+<p>see also: GenerateModel, CheckModel
+check if input is a string or cell with equations and package in spec structure</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CheckStudyinfo">
+<code class="descclassname">functions.</code><code class="descname">CheckStudyinfo</code><span class="sig-paren">(</span><em>studyinfo</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CheckStudyinfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>studyinfo=CheckStudyinfo(studyinfo)
+Purpose: standardize studyinfo structure and auto-populate missing fields
+Input: DynaSim studyinfo structure
+Output: DynaSim studyinfo structure (standardized)
+studyinfo schema:</p>
+<blockquote>
+<div><p>studyinfo.study_id   (unique identifier, cannot be set by user; may be useful in future for recovering results that are moved)
+studyinfo.study_dir
+studyinfo.time_created
+studyinfo.last_modified
+studyinfo.base_model (=[]): original model from which a set of simulations was derived
+studyinfo.base_simulator_options (=[])
+studyinfo.base_solve_file (=&#8217;&#8216;)
+studyinfo.simulations(k) (=[])</p>
+<blockquote>
+<div><p>.simulations(k).sim_id: unique identifier in study
+.simulations(k).modifications: modifications made to the base model during this simulation
+.simulations(k).stop_time
+.simulations(k).duration
+.simulations(k).status: {&#8216;started&#8217;, &#8216;failed&#8217;, &#8216;finished&#8217;}
+.simulations(k).data_file: full filename of eventual output file
+.simulations(k).batch_dir (=[]): directory where cluster jobs were saved (if cluster_flag=1)
+.simulations(k).job_file (=[]): m-file cluster job that runs this simulation (if cluster_flag=1)
+.simulations(k).error_log (=&#8217;&#8216;)
+.simulations(k).machine_info</p>
+<blockquote>
+<div>.machine_info.host_name
+.machine_info.total_memory
+.machine_info.CPU_type
+.machine_info.CPU_cache
+.machine_info.num_cores
+.machine_info.operating_system
+.machine_info.kernel
+.machine_info.home_dir</div></blockquote>
+<p>.simulations(k).modified_model_file
+.simulations(k).simulator_options
+.simulations(k).solve_file
+.simulations(k).result_files (={}): cell array of result files (including saved plots)
+.simulations(k).result_functions (={}): cell array of names of functions producing results stored in result_files (including plot functions)
+.simulations(k).result_options (={}): cell array of option structures for result_functions</p>
+</div></blockquote>
+<p>studyinfo.base_data_files{k} % these are the base data files analyses are applied to. for simulated data, this equals {simulations.datafile}
+studyinfo.analysis(j)(=[]): metadata for one batch (analysis applied to all files = {studyinfo.simulations.data_file})</p>
+<blockquote>
+<div>.analysis(j).analysis_id
+.analysis(j).function
+.analysis(j).analysis_options
+.analysis(j).stop_time
+.analysis(j).duration
+.analysis(j).status
+.analysis(j).batch_dir (=[])
+.analysis(j).job_file (=[])
+.analysis(j).error_log (=&#8217;&#8216;)
+.analysis(j).machine_info (same as studyinfo.simulations.machine_info)
+.analyses(j).derived_result_file: full file names of derived data sets</div></blockquote>
+<p>studyinfo.matlab_version
+studyinfo.dynasim_hash
+studyinfo.paths (=[])
+studyinfo.project_id (=[])</p>
+</div></blockquote>
+<p>Example 1: obtain empty studyinfo structure with all fields
+studyinfo=CheckStudyinfo([])</p>
+<p>Example 2: standardize existing studyinfo
+studyinfo=CheckStudyinfo(studyinfo)</p>
+<p>See also: SetupStudy, SimulateModel, CreateBatch, ImportData, AnalyzeStudy</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ClassifyEquation">
+<code class="descclassname">functions.</code><code class="descname">ClassifyEquation</code><span class="sig-paren">(</span><em>string</em>, <em>delimiter</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ClassifyEquation" title="Permalink to this definition">¶</a></dt>
+<dd><p>CLASS=ClassifyEquation(STRING,DELIMITER)
+Purpose: use regular expressions to classify model expressions in STRING
+Inputs:</p>
+<blockquote>
+<div>STRING
+DELIMITER (optional character, default=&#8217;;&#8217;): delimit expressions in STRING</div></blockquote>
+<p>Output: CLASS (string or cell array of strings for each delimited expression)
+class:            format:</p>
+<blockquote>
+<div>parameter         name=value
+fixed_variable    name=expression/data
+function          name(inputs)=expression
+ODE               dx/dt or x&#8217; = expression
+IC                x(0)=values
+conditional       if(condition)(action) or if(condition)(action)else(action)
+monitor           monitor *   (previously: monitor name=expression)
+linker            {&#8216;+=&#8217;,&#8217;-=&#8217;,&#8217;<em>=&#8217;,&#8217;/=&#8217;} (&#8216;=&gt;&#8217;for backwards compatibility) {&#8216;&gt;-&#8216;,&#8217;&gt;+&#8217;,&#8217;&gt;</em>&#8216;,or &#8216;&gt;&#8217;}
+comment           % or #</div></blockquote>
+<dl class="docutils">
+<dt>NOTE 1: output &#8220;class&#8221; will be a cell array of strings if STRING contains</dt>
+<dd>multiple expressions; otherwise it will be a string.</dd>
+<dt>NOTE 2: this function is designed to be an internal helper function </dt>
+<dd>called by user-level functions in DynaSim.</dd>
+</dl>
+<p>Examples:
+class  =ClassifyEquation(&#8216;dx/dt=3*a*x&#8217;)
+classes=ClassifyEquation(&#8216;dx/dt=3*a*x; x(0)=0&#8217;)
+classes=ClassifyEquation(&#8216;dx/dt=3*a*x, x(0)=0&#8217;,&#8217;,&#8217;)
+classes=ClassifyEquation(&#8216;a=2; b=2*a; f(x)=b; dx/dt=f(x); x(0)=0; if(x&gt;1)(x=0); current=&gt;f(x); monitor f(x); % comments&#8217;)
+classes=ClassifyEquation(&#8216;model.eqns&#8217;);</p>
+<p>See also: ParseModelEquations
+check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CollectVariedParams">
+<code class="descclassname">functions.</code><code class="descname">CollectVariedParams</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CollectVariedParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>[all_values,param_names,unique_values]=CollectVariedParams(data)
+inputs:</p>
+<blockquote>
+<div>data:</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd>all_values: [num_sets x num_params_varied], values used for each data set
+param_names: list of names of varied parameters
+unique_values: cell array of unique values used for each varied  parameter</dd>
+</dl>
+<p>Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CombineModels">
+<code class="descclassname">functions.</code><code class="descname">CombineModels</code><span class="sig-paren">(</span><em>model1</em>, <em>model2</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CombineModels" title="Permalink to this definition">¶</a></dt>
+<dd><p>model=CombineModels(model1,model2)
+Purpose: combine subfields in two DynaSim model structures
+Inputs: two models to be combined
+Output: DynaSim model with fields combined from both models</p>
+<p>See also: CheckModel, GenerateModel
+standardize model structures</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CompareSolveFiles">
+<code class="descclassname">functions.</code><code class="descname">CompareSolveFiles</code><span class="sig-paren">(</span><em>solve_file_m</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CompareSolveFiles" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Purpose: look for an equivalent file in same directory</dt>
+<dd><ul class="first last simple">
+<li>compare to other <a href="#id11"><span class="problematic" id="id12">*</span></a>.m in /solve/</li>
+<li>if match: remove(solve_file); solve_file=match;</li>
+</ul>
+</dd>
+</dl>
+<p>See also: GetSolveFile, SimulateModel, CreateBatch</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.CreateBatch">
+<code class="descclassname">functions.</code><code class="descname">CreateBatch</code><span class="sig-paren">(</span><em>base_model</em>, <em>modifications_set</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.CreateBatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>studyinfo=CreateBatch(model,varargin)
+Purpose: create and submit jobs to run sets of simulations or analyses.
+Inputs:</p>
+<blockquote>
+<div><ul class="simple">
+<li>DynaSim model (see GenerateModel)</li>
+<li>modifications_set (as returned by Vary2Modifications())</li>
+</ul>
+<dl class="docutils">
+<dt>options:</dt>
+<dd><dl class="first docutils">
+<dt>&#8216;compile_flag&#8217; <span class="classifier-delimiter">:</span> <span class="classifier">whether to compile simulation using coder instead of </span></dt>
+<dd>interpreting Matlab {0 or 1} (default: 0)</dd>
+</dl>
+<p class="last">&#8216;verbose_flag&#8217;  : whether to display informative messages/logs (default: 0)
+&#8216;overwrite_flag&#8217;: whether to overwrite existing data files {0 or 1} (default: 0)</p>
+</dd>
+<dt>options for cluster computing:</dt>
+<dd>&#8216;sims_per_job&#8217;  : number of simulations to run per cluster job (default: 1)
+&#8216;memory_limit&#8217;  : memory to allocate per cluster job (default: &#8216;8G&#8217;)
+&#8216;batch_dir&#8217;     : where to save job scripts</dd>
+<dt>options for parallel computing: (requires Parallel Computing Toolbox)</dt>
+<dd>&#8216;parallel_flag&#8217; : whether to use parfor to run simulations {0 or 1} (default: 0)
+&#8216;num_cores&#8217;     : number of cores to specify in the parallel pool
+<a href="#id13"><span class="problematic" id="id14">*</span></a>note: parallel computing has been disabled for debugging...</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>DynaSim studyinfo (see CheckStudyinfo for schema info)</li>
+</ul>
+</dd>
+</dl>
+<p>See also: GenerateModel, SimulateModel, CheckStudyinfo, Vary2Modifications
+dependencies: SetupStudy, UpdateStudy
+check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.DynaSim2Odefun">
+<code class="descclassname">functions.</code><code class="descname">DynaSim2Odefun</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.DynaSim2Odefun" title="Permalink to this definition">¶</a></dt>
+<dd><p>purpose: create function handle with DynaSim model for use with built-in
+matlab solvers.
+input: DynaSim model structure
+output: Matlab function handle for use with built-in solvers</p>
+<p>see also: SimulateModel, odeexamples
+todo: implement this function ...</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ExportData">
+<code class="descclassname">functions.</code><code class="descname">ExportData</code><span class="sig-paren">(</span><em>data</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ExportData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Purpose: export DynaSim data structure in various formats.
+Inputs:</p>
+<blockquote>
+<div>DynaSim data structure (see CheckData)</div></blockquote>
+<dl class="docutils">
+<dt>Options:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;filename&#8217;    : name of output data file (default: &#8216;data.mat&#8217;)</li>
+<li>&#8216;format&#8217;      : mat. todo: csv, HDF. (default: &#8216;mat&#8217;)</li>
+<li>&#8216;verbose_flag&#8217;: whether to print log info (default: 0)</li>
+</ul>
+</dd>
+</dl>
+<p>See also: ImportData, CheckData, SimulateModel</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.GenerateModel">
+<code class="descclassname">functions.</code><code class="descname">GenerateModel</code><span class="sig-paren">(</span><em>specification</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.GenerateModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>[model,name_map]=GenerateModel(specification,&#8217;option&#8217;,value,...)
+Purpose: parse DynaSim specification and organize model data in DynaSim model structure
+Inputs:</p>
+<blockquote>
+<div><p>specification: one of &#8211;
+- DynaSim specification structure (see below and CheckSpecification for more details)
+- string with name of MAT-file containing DynaSim specification structure
+- string with equations
+- string with name of file containing equations (.eqns)</p>
+<blockquote>
+<div>note: .eqns files can also be converted into model structure using LoadModel()</div></blockquote>
+<p>options (with defaults): &#8216;option1&#8217;,value1,&#8217;option2&#8217;,value2,...
+- &#8216;modifications&#8217; ([]): specify modifications to apply to specification before</p>
+<blockquote>
+<div>generating the model (see ApplyModifications for more details).</div></blockquote>
+<ul class="simple">
+<li>&#8216;open_link_flag&#8217;    : whether to leave linker identifiers in place (default: 0)</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>Outputs:</dt>
+<dd><dl class="first last docutils">
+<dt>model - DynaSim model structure (see CheckModel for more details):</dt>
+<dd><p class="first">.parameters      : substructure with model parameters
+.fixed_variables : substructure with fixed variable definitions
+.functions       : substructure with function definitions
+.monitors        : substructure with monitor definitions
+.state_variables : cell array listing state variables
+.ODEs            : substructure with one ordinary differential</p>
+<blockquote>
+<div>equation (ODE) per state variable</div></blockquote>
+<dl class="docutils">
+<dt>.ICs <span class="classifier-delimiter">:</span> <span class="classifier">substructure with initial conditions (ICs) for </span></dt>
+<dd>each state variable</dd>
+<dt>.conditionals(i) <span class="classifier-delimiter">:</span> <span class="classifier">structure array with each element indicating</span></dt>
+<dd>conditional actions specified in subfields 
+&#8220;condition&#8221;,&#8221;action&#8221;,&#8221;else&#8221; (see NOTE 1 in CheckModel)</dd>
+<dt>.linkers(i) <span class="classifier-delimiter">:</span> <span class="classifier">structure array with each element indicating</span></dt>
+<dd><blockquote class="first">
+<div>an &#8220;expression&#8221; that should be inserted 
+(according to &#8220;operation&#8221;) into any equations 
+where the &#8220;target&#8221; appears. (see NOTE 2 in CheckModel)</div></blockquote>
+<p class="last">.target    : string giving the target where expression should be inserted
+.expression: string giving the expression to insert
+.operation : string giving the operation to use to insert expression</p>
+</dd>
+</dl>
+<p class="last">.comments{i}     : cell array of comments found in model files
+.specification   : specification used to generate the model
+.namespaces      : (see NOTE 3 in CheckModel)</p>
+</dd>
+<dt>name_map - cell matrix mapping parameter, variable, and function names</dt>
+<dd>between the user-created specification (population equations and mechanism
+files) and the full model with automatically generated namespaces. It 
+has four columns with: user-specified name, name with namespace prefix, 
+namespace, and type (&#8216;parameters&#8217;, &#8216;fixed_variables&#8217;, &#8216;state_variables&#8217;, 
+&#8216;functions&#8217;, or &#8216;monitors&#8217;) indicating the category to which the named
+element belongs.</dd>
+</dl>
+</dd>
+</dl>
+<p>DynaSim specification structure (see CheckSpecification for more details)
+.populations(i) (required): contains info for defining independent population models</p>
+<blockquote>
+<div><p>.name (default: &#8216;pop1&#8217;)      : name of population
+.size (default: 1)           : number of elements in population (i.e., # cells)
+.equations (required)        : string listing equations (see NOTE 1 in CheckSpecification)
+.mechanism_list (default: []): cell array listing mechanisms (see NOTE 2 in CheckSpecification)
+.parameters (default: [])    : parameters to assign across all equations in</p>
+<blockquote>
+<div>the population. provide as cell array list of key/value pairs
+{&#8216;param1&#8217;,value1,&#8217;param2&#8217;,value2,...}</div></blockquote>
+<p>.model (default: [])   : optional DynaSim model structure</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>.connections(i) (default: []): contains info for linking population models</dt>
+<dd><p class="first">.source (required if &gt;1 pops): name of source population
+.target (required if &gt;1 pops): name of target population
+.mechanism_list (required)   : list of mechanisms that link two populations
+.parameters (default: [])    : parameters to assign across all equations in</p>
+<blockquote class="last">
+<div>mechanisms of this connection&#8217;s mechanism_list.</div></blockquote>
+</dd>
+</dl>
+<p>Example 0:
+model=GenerateModel(&#8216;db/dt=3&#8217;)</p>
+<p>Example 1: Lorenz equations
+eqns={</p>
+<blockquote>
+<div>&#8216;s=10; r=27; b=2.666&#8217;;
+&#8216;dx/dt=s*(y-x)&#8217;;
+&#8216;dy/dt=r*x-y-x*z&#8217;;
+&#8216;dz/dt=-b*z+x*y&#8217;;</div></blockquote>
+<p>};
+model=GenerateModel(eqns)</p>
+<p>Example 2: Leaky integrate-and-fire neuron
+model=GenerateModel(&#8216;tau=10; R=10; E=-70; dV/dt=(E-V+R*1.55)/tau; if(V&gt;-55)(V=-75)&#8217;)</p>
+<p>Example 3: Hodgkin-Huxley neuron with sinusoidal drive
+model=GenerateModel(&#8216;dv/dt=current+sin(2*pi*t); {iNa,iK}&#8217;)</p>
+<p>Example 4: HH with self inhibition and sinusoidal drive
+specification.populations(1).equations=&#8217;dv/dt=current+sin(2*pi); v(0)=-65&#8217;;
+specification.populations(1).mechanism_list={&#8216;iNa&#8217;,&#8217;iK&#8217;};
+specification.connections(1).mechanism_list={&#8216;iGABAa&#8217;};
+specification.connections(1).parameters={&#8216;tauDx&#8217;,15};
+model=GenerateModel(specification)</p>
+<p>Example 5: using custom mechanism alias in equations (for modularization)
+specification.populations(1).equations=&#8217;dv/dt=&#64;M+sin(2*pi); v(0)=-65&#8217;;
+specification.populations(1).mechanism_list={&#8216;iNa&#64;M&#8217;,&#8217;iK&#64;M&#8217;};
+model=GenerateModel(specification)
+or:
+specification.populations(1).equations=&#8217;dv/dt=&#64;M+sin(2*pi); {iNa,iK}&#64;M; v(0)=-65&#8217;;
+model=GenerateModel(specification)</p>
+<p>Example 6: directly incorporating mechanism models from online repositories:
+model=GenerateModel(&#8216;dv/dt=&#64;M; {ib:57,iK}&#64;M&#8217;)</p>
+<blockquote>
+<div>where &#8220;ib&#8221; is a known alias for the infinitebrain.org repository,
+and &#8220;57&#8221; is the Na+ current at <a class="reference external" href="http://infinitebrain.org/models/57">http://infinitebrain.org/models/57</a>.
+note: currently not supported on <em>most</em> machines...</div></blockquote>
+<p>See also: CheckSpecification, CheckModel, ParseModelEquations, SimulateModel
+Check inputs
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.GetOutputCounts">
+<code class="descclassname">functions.</code><code class="descname">GetOutputCounts</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.GetOutputCounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>[state_var_counts,monitor_counts]=GetOutputCounts(model)
+purpose: determine how many copies of each state variable and monitor
+will be produced by simulating the model.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.GetParentNamespace">
+<code class="descclassname">functions.</code><code class="descname">GetParentNamespace</code><span class="sig-paren">(</span><em>namespace</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.GetParentNamespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>parent = GetParentNamespace(namespace)
+purpose: determine parent namespace from namespace specified in namespace
+input:</p>
+<blockquote>
+<div>namespace: current namespace of object</div></blockquote>
+<dl class="docutils">
+<dt>output:</dt>
+<dd>parent: parent namespace containing the current namespace</dd>
+</dl>
+<p>examples:
+parent=GetParentNamespace(&#8216;pop&#8217;)
+parent=GetParentNamespace(&#8216;pop_mech&#8217;)
+parent=GetParentNamespace(&#8216;pop_pop&#8217;)
+parent=GetParentNamespace(&#8216;pop_pop_mech&#8217;)
+parent=GetParentNamespace(&#8216;mech&#8217;)
+parent=GetParentNamespace(&#8216;&#8217;)</p>
+<p>see also: PropagateNamespaces</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.GetSolveFile">
+<code class="descclassname">functions.</code><code class="descname">GetSolveFile</code><span class="sig-paren">(</span><em>model</em>, <em>studyinfo</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.GetSolveFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>solve_file = GetSolveFile(model,studyinfo,options)
+Purpose: helper function that creates or retrieves the desired solver file.
+Inputs:</p>
+<blockquote>
+<div><p>model - DynaSim model structure (see GenerateModel)
+studyinfo (optional) - DynaSim studyinfo structure (see CheckStudyinfo)
+options (optional) - cell array of key/value pairs or Matlab structure with options</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8216;solver&#8217; <span class="classifier-delimiter">:</span> <span class="classifier">solver for numerical integration (see GetSolveFile)</span></dt>
+<dd>{&#8216;euler&#8217;,&#8217;rk2&#8217;,&#8217;rk4&#8217;} (default: &#8216;rk4&#8217;)</dd>
+</dl>
+<p>&#8216;disk_flag&#8217;     : whether to write to disk during simulation instead of storing in memory {0 or 1} (default: 0)
+&#8216;study_dir&#8217;     : relative or absolute path to output directory (default: current directory)
+&#8216;verbose_flag&#8217;  : whether to display informative messages/logs (default: 0)</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="docutils">
+<dt>Output:</dt>
+<dd>solver_file - full file name of file solving the system in model</dd>
+<dt>See also: WriteDynaSimSolver, CompareSolveFiles, PrepareMEX, </dt>
+<dd>SimulateModel, CreateBatch</dd>
+</dl>
+<p>Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ImportCSV">
+<code class="descclassname">functions.</code><code class="descname">ImportCSV</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ImportCSV" title="Permalink to this definition">¶</a></dt>
+<dd><p>data=ImportCSV(csvfile)
+purpose: load CSV data into DynaSim formatted data structure.
+inputs:</p>
+<blockquote>
+<div>datafile - CSV file organized according to output from WriteDynaSimSolver</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd><dl class="first last docutils">
+<dt>DynaSim data structure:</dt>
+<dd>data.(state_variables)
+data.(monitors)
+data.time
+data.simulator_options</dd>
+</dl>
+</dd>
+<dt>note: CSV file structure</dt>
+<dd>assumes CSV file contains data organized according to output from
+WriteDynaSimSolver: time points along rows; state variables and 
+monitors are columns; first column is time vector; next columns are
+state variables; final columns are monitors. first row has headers
+for each column. if a population has more than one cell, different
+cells are sequential columns with same header repeated for each cell.</dd>
+</dl>
+<p>see also: ImportData
+check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ImportData">
+<code class="descclassname">functions.</code><code class="descname">ImportData</code><span class="sig-paren">(</span><em>file</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ImportData" title="Permalink to this definition">¶</a></dt>
+<dd><p>[data,studyinfo]=ImportData(data_file)
+data=ImportData(data_file)
+Purpose: load data into DynaSim formatted data structure.
+Inputs:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>data_file - data file name in accepted format (csv, mat, ...), or</dt>
+<dd>also accepted: list of data files, studyinfo structure, study_dir, or studyinfo file</dd>
+</dl>
+<p>studyinfo - DynaSim studyinfo structure (see CheckStudyinfo)
+options -</p>
+<blockquote>
+<div>&#8216;verbose_flag&#8217;,1,{0,1},...
+&#8216;process_id&#8217;,[],[],... % process identifier for loading studyinfo if necessary
+&#8216;time_limits&#8217;,[],[],... % [beg,end] ms (see NOTE 2)
+&#8216;variables&#8217;,[],[],... % cell array of matrix names (see NOTE 2)</div></blockquote>
+</div></blockquote>
+<dl class="docutils">
+<dt>Outputs:</dt>
+<dd><dl class="first last docutils">
+<dt>DynaSim data structure:</dt>
+<dd>data.labels           : list of state variables and monitors recorded
+data.(state_variables): state variable data matrix [time x cells]
+data.(monitors)       : monitor data matrix [time x cells]
+data.time             : time vector [time x 1]
+data.simulator_options: simulator options used to generate simulated data
+data.model            : model used to generate simulated data
+[data.varied]         : list of varied model components
+[data.results]        : list of derived data sets created by post-processing</dd>
+</dl>
+</dd>
+<dt>NOTE 1: CSV file structure</dt>
+<dd>assumes CSV file contains data organized according to output from
+WriteDynaSimSolver: time points along rows; state variables and 
+monitors are columns; first column is time vector; next columns are
+state variables; final columns are monitors. first row has headers
+for each column. if a population has more than one cell, different
+cells are sequential columns with same header repeated for each cell.</dd>
+</dl>
+<p>NOTE 2: DynaSim data exported to MAT-files are HDF-compatible. To obtain
+partial data sets without having to load the entire file, use ImportData
+with options &#8216;time_limits&#8217; and/or &#8216;variables&#8217;. Alternatively, the entire
+data set can be loaded using ImportData with default options, then
+subsets extracted using SelectData with appropriate options.</p>
+<p>Examples:
+1) full data set
+data=ImportData(&#8216;data.mat&#8217;); % load single data set
+data=ImportData(studyinfo); % load all data sets in studyinfo.study_dir
+2) partial data set with HDF-style loading
+data=ImportData(&#8216;data.mat&#8217;,&#8217;variables&#8217;,&#8217;pop1_v&#8217;,&#8217;time_limits&#8217;,[1000 4000])</p>
+<p>See also: SimulateModel, ExportData, CheckData, SelectData
+todo: specify subsets to return in terms of varied parameters, time_limits, ROIs, etc
+possible format for specifying range_varied:
+{&#8216;E&#8217;,&#8217;gNa&#8217;,[.1 .3]; &#8216;I-&gt;E&#8217;,&#8217;tauI&#8217;,[15 25]; &#8216;I&#8217;,&#8217;mechanism_list&#8217;,&#8217;+iM&#8217;}
+idea: achieve by calling function SelectData() at end of this function.
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ImportModel">
+<code class="descclassname">functions.</code><code class="descname">ImportModel</code><span class="sig-paren">(</span><em>source</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ImportModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>[model,map] = ImportModel(source,&#8217;option&#8217;,value,...)
+Purpose: import model
+Inputs:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>source: [string]</dt>
+<dd><ol class="first last arabic simple">
+<li>file with model equations (DynaSim .mech or .eqns, XPP, ...)</li>
+<li>string with equations</li>
+<li>reference to DB model with equations</li>
+</ol>
+</dd>
+<dt>options (optional):</dt>
+<dd><p class="first">&#8216;namespace&#8217;: namespace to prepend to all parameter, variable, and function names
+&#8216;ic_pop&#8217;: name of population with state variables defined in this model</p>
+<blockquote>
+<div>note: connection mechanisms in target pop can have ic_pop=source</div></blockquote>
+<p class="last">&#8216;host&#8217;: name of database hosting the model to import
+&#8216;user_parameters&#8217;: cell array of key/value pairs to override model parameters</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>Output:</dt>
+<dd>DynaSim model structure (see GenerateModel)</dd>
+</dl>
+<p>See also: GenerateModel, CheckModel
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ImportResults">
+<code class="descclassname">functions.</code><code class="descname">ImportResults</code><span class="sig-paren">(</span><em>studyinfo</em>, <em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ImportResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>results = ImportResults(studyinfo,func)
+inputs:</p>
+<blockquote>
+<div><ul class="simple">
+<li>studyinfo: DynaSim studyinfo structure or study_dir</li>
+<li>func: function handle of analysis function whose results to return</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd><ul class="first last simple">
+<li>results: structure of results [num_sims x num_calls]</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.LocateModelFiles">
+<code class="descclassname">functions.</code><code class="descname">LocateModelFiles</code><span class="sig-paren">(</span><em>input</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.LocateModelFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>[paths,files]=LocateModelFiles(input)
+Purpose: locate mechanism files associated with DynaSim specifications.
+Input: DynaSim specification or model structure or string or cell array of</p>
+<blockquote>
+<div>strings listing mechanism names or files.</div></blockquote>
+<dl class="docutils">
+<dt>Outputs: </dt>
+<dd>paths - unique paths to mechanism files
+files - full names of files containing mechanism sub-models</dd>
+</dl>
+<p>See also (used by): ParseModelEquations, CheckHostPaths, CreateBatch
+extract list of mechanisms from input</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.MonitorStudy">
+<code class="descclassname">functions.</code><code class="descname">MonitorStudy</code><span class="sig-paren">(</span><em>studyinfo</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.MonitorStudy" title="Permalink to this definition">¶</a></dt>
+<dd><p>[studyinfo,status]=MonitorStudy(studyinfo,key/value options)
+Purpose: display information on study progress.
+inputs:</p>
+<blockquote>
+<div><ul class="simple">
+<li>studyinfo: DynaSim studyinfo structure, study directory, or studyinfo MAT filename</li>
+<li>options: ...</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd><ul class="first last">
+<li><p class="first">studyinfo: DynaSim studyinfo structure</p>
+</li>
+<li><dl class="first docutils">
+<dt>status: numeric code</dt>
+<dd><p class="first last">0 (study in progress)
+1 (study finished)
+2 (error in study)
+-1 (function failed)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>see also: SimulateModel, CreateBatch, CheckStudyinfo
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.Options2Keyval">
+<code class="descclassname">functions.</code><code class="descname">Options2Keyval</code><span class="sig-paren">(</span><em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.Options2Keyval" title="Permalink to this definition">¶</a></dt>
+<dd><p>keyvals = Options2Keyval(options)
+Purpose:</p>
+<blockquote>
+<div>Convert from options structure to a list of key/value pairs.</div></blockquote>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd>parms - options structure to convert</dd>
+</dl>
+<p>See also: CheckOptions
+Grab the field names</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ParseModelEquations">
+<code class="descclassname">functions.</code><code class="descname">ParseModelEquations</code><span class="sig-paren">(</span><em>text</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ParseModelEquations" title="Permalink to this definition">¶</a></dt>
+<dd><p>model = ParseModelEquations(STRING,&#8217;param&#8217;,value,...)
+Purpose: parse equations and organize model data in DynaSim model structure
+Inputs:</p>
+<blockquote>
+<div>STRING (required): one of &#8211;
+- string with equations
+- string with name of file containing equations (.eqns or .mech)
+options (using key/value pairs: &#8216;option1&#8217;,value1,...):
+- &#8216;namespace&#8217;: (default: &#8216;&#8217;) added as prefix to beginning of parameter/etc names
+- &#8216;delimiter&#8217;: (default: &#8216;;&#8217;) separates expressions on same line of model text
+user-supplied parameter values: (&#8216;key&#8217;,value): name (key) of parameters to be set and associated user-supplied values</div></blockquote>
+<dl class="docutils">
+<dt>Outputs:</dt>
+<dd><p class="first">model: DynaSim model structure (see CheckModel for details)
+name_map: {name, namespace_name, namespace, type}, useful for namespace-specific substitutions across multiple sub-models</p>
+<blockquote class="last">
+<div>(see description in GenerateModel for more information)</div></blockquote>
+</dd>
+</dl>
+<p>NOTE 1: .eqns files contain fully self contained model equations; 
+.mech files define (sub)models that depend on variables linked from 
+elsewhere. However, this function does not distinguish between the two.</p>
+<p>Examples:
+model = ParseModelEquations(&#8216;dx/dt=3*a*x; x(0)=0&#8217;,&#8217;a&#8217;,0);
+model = ParseModelEquations(&#8216;dx/dt=3*a*x, x(0)=0&#8217;,&#8217;a&#8217;,0,&#8217;delimiter&#8217;,&#8217;,&#8217;);
+model = ParseModelEquations(&#8216;CalciumPump.mech&#8217;,&#8217;namespace&#8217;,&#8217;HH&#8217;);
+model = ParseModelEquations(&#8216;LIFneuron.eqns&#8217;);
+model = ParseModelEquations(&#8216;a=2; b=2*a; f(x)=b; dx/dt=f(x); x(0)=0; if(x&gt;1)(x=0); current-&gt;f(x); monitor f(x); % comments&#8217;)</p>
+<p>parsing individual sub-models from specification:
+equations=specification.populations(1).equations;
+[model,map] = ParseModelEquations(equations,&#8217;namespace&#8217;,&#8217;pop&#8217;)
+population_mechanism=specification.populations(1).mechanism_list{1};
+[model,map] = ParseModelEquations(population_mechanism,&#8217;namespace&#8217;,&#8217;pop_mech&#8217;)
+connection_mechanism=specification.connections(1).mechanism_list{1};
+[model,map] = ParseModelEquations(connection_mechanism,&#8217;namespace&#8217;,&#8217;pop_pop_mech&#8217;)</p>
+<p>See also: ClassifyEquation, GenerateModel, LocateModelFiles</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.PlotFR">
+<code class="descclassname">functions.</code><code class="descname">PlotFR</code><span class="sig-paren">(</span><em>data</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.PlotFR" title="Permalink to this definition">¶</a></dt>
+<dd><p>plotFR(data,&#8217;option&#8217;,value)
+Purpose: plot spike rates in various ways depending on what data was</p>
+<blockquote>
+<div>provided.</div></blockquote>
+<dl class="docutils">
+<dt>Inputs:</dt>
+<dd><p class="first">data: DynaSim data structure (see CheckData)
+options: (same as CalcFR)</p>
+<blockquote class="last">
+<div><p>CalcFR options:
+&#8216;variable&#8217; - name of field containing data on which to calculate firing</p>
+<blockquote>
+<div>rates (default: <a href="#id15"><span class="problematic" id="id16">*</span></a>_spikes or first variable in data.labels)</div></blockquote>
+<p>&#8216;threshold&#8217; - scalar threshold value for detecting events (default: 0)
+&#8216;bin_size&#8217; - size of temporal window over which to calculate rate [ms or fraction of data set] (default: 5% of the data set)
+&#8216;bin_shift&#8217; - how much to shift the bin before calculating rate again [ms or fraction of data set] (default: 1% of the data set)</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>Examples:
+PlotFR(data,&#8217;bin_size&#8217;,30,&#8217;bin_shift&#8217;,10);</p>
+<p>See also: CalcFR, SimulateModel, CheckData
+TODO: add rastergrams</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.PlotWaveforms">
+<code class="descclassname">functions.</code><code class="descname">PlotWaveforms</code><span class="sig-paren">(</span><em>data</em>, <em>'option'</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.PlotWaveforms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Purpose: plot waveforms in various ways depending on what data was provided.
+Inputs:</p>
+<blockquote>
+<div><p>data: DynaSim data structure (see CheckData)
+options:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8216;variable&#8217; - name of field containing data to plot</dt>
+<dd>(default: all pops with state variable of variable in data.labels)</dd>
+</dl>
+<p>&#8216;time_limits&#8217; - [beg,end] (units of data.time)
+&#8216;max_num_overlaid&#8217; - maximum # of waveforms to overlay per plot
+&#8216;max_num_rows&#8217; - maximum # of subplot rows per figure</p>
+</div></blockquote>
+</div></blockquote>
+<p>Plots:
+if Nsims&gt;1: one sim per row
+elseif Npops&gt;1: one pop per row
+else: one cell per row</p>
+<p>Examples for specifying &#8216;variable&#8217; option: 
+[]      : plot all data.labels with same variable name as first element of data.labels (eg, &#8216;pop1_v&#8217; and &#8216;pop2_v&#8217;)
+&#8216;*&#8217;     : plot all data.labels
+&#8216;<em>_v&#8217;   : plot all data.labels ending in _v (i.e., all state variables &#8216;v&#8217; for all populations)
+&#8216;pop1_</em>&#8216;: plot all data.labels starting with <a href="#id23"><span class="problematic" id="id24">pop1_</span></a> (i.e., all variables for population &#8216;pop1&#8217;)
+&#8216;pop1_v&#8217;: plot only variable &#8216;pop1_v&#8217;
+&#8216;v&#8217;     : look for all data.labels ending in _v then starting with <a href="#id25"><span class="problematic" id="id26">v_</span></a> (eg, all populations with variable &#8216;v&#8217;)
+&#8216;pop1&#8217;  : look for all data.labels ending in _pop1 then starting with <a href="#id27"><span class="problematic" id="id28">pop1_</span></a> (eg, all variables for population &#8216;pop1&#8217;)
+&#8216;<em>_iNa_</em>&#8216;: plot all data.labels for the &#8216;iNa&#8217; mechanism (for all populations)</p>
+<p>Examples:
+One cell:
+data=SimulateModel(<a class="reference external" href="mailto:'dv/dt=&#37;&#52;&#48;current+10">'dv/dt=<span>&#64;</span>current+10</a>; {iNa,iK}&#8217;);
+PlotWaveforms(data); % plot first state variable (&#8216;v&#8217;)
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;); % plot all state variables
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;,&#8217;time_limits&#8217;,[30 60]); % plot all variables and time 30-60ms</p>
+<p>One population: with noisy input
+data=SimulateModel(&#8216;dv[5]/dt=&#64;current+10*(1+randn(1,Npop)); {iNa,iK}&#8217;);
+PlotWaveforms(data);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;); % plot all state variables (all cells)
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;m&#8217;); % plot state variable &#8216;m&#8217; (all cells)
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;,&#8217;time_limits&#8217;,[30 60]); % plot all variables and time 30-60ms</p>
+<p>One population varying one parameter (input amplitude):
+eqns=&#8217;dv[5]/dt=&#64;current+amp*(1+randn(1,Npop)); {iNa,iK}&#8217;;
+vary={&#8216;&#8217;,&#8217;amp&#8217;,[0 10 20]};
+data=SimulateModel(eqns,&#8217;vary&#8217;,vary);
+PlotWaveforms(data);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;m&#8217;);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;);</p>
+<p>One population varying two parameters (input amplitude and membrane capacitance):
+eqns=&#8217;dv[5]/<a class="reference external" href="mailto:dt=&#37;&#52;&#48;current">dt=<span>&#64;</span>current</a>/Cm+amp*(1+randn(1,Npop)); {iNa,iK}&#8217;;
+vary={&#8216;&#8217;,&#8217;Cm&#8217;,[1 2]; &#8216;&#8217;,&#8217;amp&#8217;,[0 10 20]};
+data=SimulateModel(eqns,&#8217;vary&#8217;,vary);
+PlotWaveforms(data);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;);</p>
+<p>Two populations: noisy input to E and excitatory connection from E to I
+spec=[];
+spec.populations(1).name=&#8217;E1&#8217;;
+spec.populations(1).equations=&#8217;dv[5]/dt=&#64;current+amp*(1+randn(1,Npop)); amp=10; {iNa,iK}&#8217;;
+spec.populations(2).name=&#8217;E2&#8217;;
+spec.populations(2).equations=&#8217;dv[2]/<a class="reference external" href="mailto:dt=&#37;&#52;&#48;current">dt=<span>&#64;</span>current</a>; {iNa,iK}&#8217;;
+spec.connections(1).direction=&#8217;E1-&gt;E2&#8217;;
+spec.connections(1).mechanism_list=&#8217;iAMPA&#8217;;
+data=SimulateModel(spec);
+PlotWaveforms(data); % plot first state variable
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;); 
+% plot monitored synaptic current with post-synaptic voltages:
+PlotWaveforms(data,&#8217;variable&#8217;,{&#8216;E2_v&#8217;,&#8217;ISYN&#8217;}); 
+% plot monitored synaptic current with pre- and post-synaptic voltages:
+PlotWaveforms(data,&#8217;variable&#8217;,{&#8216;v&#8217;,&#8217;ISYN&#8217;});</p>
+<p>Two populations varying one parameter (input amplitude):
+vary={&#8216;E1&#8217;,&#8217;amp&#8217;,[0 10 20]};
+data=SimulateModel(spec,&#8217;vary&#8217;,vary);
+PlotWaveforms(data);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;<em>_iNa_</em>&#8216;);</p>
+<p>Two populations varying two parameters (input amplitude and synaptic conductance):
+vary={&#8216;E1&#8217;,&#8217;amp&#8217;,[0 10 20]; &#8216;E1-&gt;E2&#8217;,&#8217;gSYN&#8217;,[0 .05 .1]};
+data=SimulateModel(spec,&#8217;vary&#8217;,vary);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;v&#8217;);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;ISYN&#8217;);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;E1_v&#8217;);
+PlotWaveforms(data,&#8217;variable&#8217;,&#8217;*&#8217;);</p>
+<p>See also: PlotFR, CheckData
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.PrepareMEX">
+<code class="descclassname">functions.</code><code class="descname">PrepareMEX</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.PrepareMEX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Purpose: take a solver m-file and compile it using the Matlab coder.
+See also: GetSolveFile
+Create a MEX configuration object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ProbeCellProperties">
+<code class="descclassname">functions.</code><code class="descname">ProbeCellProperties</code><span class="sig-paren">(</span><em>model</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ProbeCellProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>data = ProbeCellProperties(model,&#8217;option1&#8217;,option1,...)
+This experiment is designed to probe the intrinsic properties of cells in
+one or more populations. It removes all connections between cells and 
+populations and then runs a series of simulations delivering
+hyperpolarizing and depolarizing pulses. It is designed to be used in
+conjunction with the analysis function &#8220;CalcCellProperties&#8221; which accepts
+the data array produced by this experiment and returns the
+electrophysiological properties characterizing each cell&#8217;s response in
+the population.</p>
+<p>Example: ...
+data=ProbeCellProperties(model,&#8217;verbose_flag&#8217;,1);</p>
+<p>Note: this function is based on the DNSim experiment &#8220;cell_pulses&#8221;.
+See also: CalcCellProperties
+Experiment: input model, produces data sets for all step levels
+Analysis: input data sets for all step levels, output one stat structure</p>
+<blockquote>
+<div>per experiment call with ephys properties for each cell in each 
+population of the model.</div></blockquote>
+<p>Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ProbeFI">
+<code class="descclassname">functions.</code><code class="descname">ProbeFI</code><span class="sig-paren">(</span><em>model</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ProbeFI" title="Permalink to this definition">¶</a></dt>
+<dd><p>data=ProbeFI(model,varargin)
+purpose: run experiment delivering varying levels of tonic input to each 
+population across multiple simulations.
+inputs:</p>
+<blockquote>
+<div><p>model - DynaSim model structure
+options:</p>
+<blockquote>
+<div>target - ...
+amplitudes - ...
+(any options for SimulateModel)
+(any options for CalcFR)</div></blockquote>
+</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd>array of DynaSim data structures for simulations varying inputs</dd>
+</dl>
+<p>see also: SimulateModel, CalcFR</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.PropagateFunctions">
+<code class="descclassname">functions.</code><code class="descname">PropagateFunctions</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.PropagateFunctions" title="Permalink to this definition">¶</a></dt>
+<dd><p>model = SubstituteFunctions(model)
+purpose: eliminate internal function calls from model ODEs, ICs, monitors,</p>
+<blockquote>
+<div>and conditionals.</div></blockquote>
+<p>input: DynaSim model structure
+output: DynaSim model structure without internal function calls</p>
+<p>see also: SimulateModel, GenerateModel, PropagateNamespaces
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.PropagateNamespaces">
+<code class="descclassname">functions.</code><code class="descname">PropagateNamespaces</code><span class="sig-paren">(</span><em>model</em>, <em>map</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.PropagateNamespaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>model = PropagateNamespaces(model,name_map)
+purpose: namespace-establishing namespace substitutions.
+inputs:</p>
+<blockquote>
+<div>model - DynaSim model structure (see GenerateModel)
+name_map - cell matrix mapping parameter, variable, and function names
+between the user-created specification (population equations and mechanism
+files) and the full model with automatically generated namespaces. It 
+has four columns with: user-specified name, name with namespace prefix, 
+namespace, and type (&#8216;parameters&#8217;, &#8216;fixed_variables&#8217;, &#8216;state_variables&#8217;, 
+&#8216;functions&#8217;, or &#8216;monitors&#8217;).</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd>model - DynaSim model structure with namespace added as namespace-delineating prefix</dd>
+</dl>
+<p>Example 1: ...</p>
+<p>see also: GenerateModel, PropagateFunctions, ParseModelEquations, GetParentNamespace
+Check model</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.PropagateParameters">
+<code class="descclassname">functions.</code><code class="descname">PropagateParameters</code><span class="sig-paren">(</span><em>model</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.PropagateParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>model = SubstituteParameters(model)
+purpose: substitute parameter values or prepend parameter names with</p>
+<blockquote>
+<div>prefix across all model equations.</div></blockquote>
+<p>input: DynaSim model structure
+options:</p>
+<blockquote>
+<div>action: {&#8216;substitute&#8217;,&#8217;prepend&#8217;} (default: substitute)
+prefix: string prepended to all parameter names if action is &#8216;prepend&#8217;</div></blockquote>
+<p>output: DynaSim model structure with updated parameter in all equations</p>
+<p>see also: PropagateFunctions, WriteDynaSimSolver
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.RemoveKeyval">
+<code class="descclassname">functions.</code><code class="descname">RemoveKeyval</code><span class="sig-paren">(</span><em>keyvals</em>, <em>keys</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.RemoveKeyval" title="Permalink to this definition">¶</a></dt>
+<dd><p>keyvals_out = RemoveKeyval(keyvals_in,keys)
+Purpose: remove keys from keyvals_in.</p>
+<p>Example:
+keyvals=RemoveKeyval({&#8216;opt1&#8217;,1,&#8217;opt2&#8217;,2,&#8217;opt3&#8217;,3},&#8217;opt2&#8217;)
+keyvals=RemoveKeyval({&#8216;opt1&#8217;,1,&#8217;opt2&#8217;,2,&#8217;opt3&#8217;,3},{&#8216;opt2&#8217;,&#8217;opt1&#8217;})</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.SelectData">
+<code class="descclassname">functions.</code><code class="descname">SelectData</code><span class="sig-paren">(</span><em>data</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.SelectData" title="Permalink to this definition">¶</a></dt>
+<dd><p>data=SelectData(data,&#8217;option&#8217;,value)
+Purpose: select subset of data
+Inputs:</p>
+<blockquote>
+<div><p>data &#8211; DNSim data structure (see SimulateModel)
+options:</p>
+<blockquote>
+<div>&#8216;time_limits&#8217; &#8211; [beg,end] (units of data.time) [ms]
+&#8216;varied&#8217; &#8211; specification of search space subset to retrieve (see NOTE 1)</div></blockquote>
+</div></blockquote>
+<p>NOTE 1: &#8216;varied&#8217; can be specified in two ways:
+Method 1: a way similar to &#8216;vary&#8217; in
+SimulateModel and Vary2Modifications. However, instead of indicating
+values for a variable to take, &#8216;varied&#8217; involves the specification of a
+range of values. Syntax: vary={object, variable, [low,high]; ...}, where
+low is the lower bound on the range varied and high is the upper bound
+for the component varied. For instance, if &#8216;gNa&#8217; in population &#8216;E&#8217; was
+varied 0:.1:1 by setting &#8216;vary&#8217; to {&#8216;E&#8217;,&#8217;gNa&#8217;,0:.1:1}, then to select the
+subset of gNa values between .3 and .5, set &#8216;varied&#8217; to {&#8216;E&#8217;,&#8217;gNa&#8217;,[.3 .5]}.
+Method 2: &#8216;varied&#8217; can be specified using the resulting
+component name stored in data.varied. e.g., {&#8216;E_iNa_gNa&#8217;,[.3 .5]}.</p>
+<p>NOTE 2: if &#8216;varied&#8217; values are requested and not a two-element array
+(e.g., [.3 .5]), then return all matching values.</p>
+<p>limitation: SelectData currently supports returning value ranges but not 
+non-numeric model components (e.g., mechanism_list modifications).</p>
+<p>Examples:
+data=SelectData(data,&#8217;time_limits&#8217;,[20 80]); % return simulated data from 20-80ms
+data=SelectData(data,&#8217;varied&#8217;,{&#8216;E&#8217;,&#8217;gNa&#8217;,[.3 .5]}); % return data sets with gNa set between .3 and .5
+data=SelectData(data,&#8217;time_limits&#8217;,[20 80],&#8217;varied&#8217;,{&#8216;E&#8217;,&#8217;gNa&#8217;,[.3 .5]});
+data=SelectData(data,&#8217;roi&#8217;,{&#8216;E_v&#8217;,[1 4]});
+See also: SimulateModel, Vary2Modifications, ImportData
+todo: specify subsets to return in terms of ROIs:
+{&#8216;E&#8217;,1:50;&#8217;I&#8217;,1:10,&#8217;F&#8217;,[]} (exclude F) (default all cells for any pops not specified in ROIs).
+possible format for specifying range_varied:
+{&#8216;E&#8217;,&#8217;gNa&#8217;,[.1 .3]; &#8216;I-&gt;E&#8217;,&#8217;tauI&#8217;,[15 25]; &#8216;I&#8217;,&#8217;mechanism_list&#8217;,&#8217;+iM&#8217;}
+check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.SelectVariables">
+<code class="descclassname">functions.</code><code class="descname">SelectVariables</code><span class="sig-paren">(</span><em>labels</em>, <em>var_strings</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.SelectVariables" title="Permalink to this definition">¶</a></dt>
+<dd><p>variables=SelectVariables(labels,var_strings)
+purpose: determine what variables to plot
+inputs:</p>
+<blockquote>
+<div>labels - cell array of variable names
+var_strings - string or cell array of strings specifying variables to plot</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd>all labels matching specifications in var_strings</dd>
+<dt>examples:</dt>
+<dd>labels={&#8216;pop1_v&#8217;,&#8217;pop1_iNa_m&#8217;,&#8217;pop1_iNa_h&#8217;,&#8217;pop2_v&#8217;,&#8217;pop2_av&#8217;,&#8217;time&#8217;};
+var_strings=[];
+var_strings=&#8217;v&#8217;;
+var_strings=&#8217;pop1&#8217;;
+var_strings=&#8217;<em>_v&#8217;;
+var_strings=&#8217;pop1_v&#8217;;
+var_strings=&#8217;pop1_</em>&#8216;;
+var_strings=&#8217;pop2_*&#8217;;</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.SetupStudy">
+<code class="descclassname">functions.</code><code class="descname">SetupStudy</code><span class="sig-paren">(</span><em>base_model</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.SetupStudy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Purpose:</dt>
+<dd><ul class="first last simple">
+<li>Initialize DynaSim studyinfo structure</li>
+<li>Prepare list of output file names (data_file, modified_model_file)</li>
+<li>Create output directories (study: data, models)</li>
+</ul>
+</dd>
+</dl>
+<p>See also: SimulateModel, UpdateStudy
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.StudyinfoIO">
+<code class="descclassname">functions.</code><code class="descname">StudyinfoIO</code><span class="sig-paren">(</span><em>studyinfo</em>, <em>study_file</em>, <em>id</em>, <em>verbose_flag</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.StudyinfoIO" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Usage: </dt>
+<dd>loading: studyinfo=StudyinfoIO([],study_file,[id,verbose_flag])
+saving:  StudyinfoIO(studyinfo,[study_file,id,verbose_flag]);</dd>
+</dl>
+<p>Purpose: use lock files to manage concurrent access to a shared studyinfo 
+i.e., this is an internal helper function called by CheckStudyinfo, 
+SetupStudy, TrackStudy, and CreateBatch to prevent busy-file conflicts.
+file. i.e., serialize read/writes for parallel processes in study batch. 
+Inputs:</p>
+<blockquote>
+<div>studyinfo: (empty [] for loading) or (DynaSim studyinfo structure to save)
+study_file: name of file to load or save
+id: process identifier for lock file name [optional]</div></blockquote>
+<p>check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.UpdateStudy">
+<code class="descclassname">functions.</code><code class="descname">UpdateStudy</code><span class="sig-paren">(</span><em>study_dir</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.UpdateStudy" title="Permalink to this definition">¶</a></dt>
+<dd><p>studyinfo=UpdateStudy(study_dir,varargin)
+purpose: helper function to keep track of study metadata when anything is
+saved. only updates simulation-specific info.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Update DynaSim studyinfo structure</li>
+<li>Tracks status of simulations [and analyses]</li>
+<li>Manage queue for simultaneous processes updating studyinfo structure</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>inputs:</dt>
+<dd><ul class="first last simple">
+<li>study_dir</li>
+<li>options:
+- ...</li>
+</ul>
+</dd>
+<dt>outputs:</dt>
+<dd><ul class="first last simple">
+<li>studyinfo</li>
+</ul>
+</dd>
+</dl>
+<p>NOTE: this function is not intended for users. it is an internal function
+called by functions like SimulateModel, AnalyzeStudy, and CreateBatch.</p>
+<p>See also: CheckStudyinfo, SetupStudy, SimulateModel, CreateBatch, AnalyzeStudy
+note: this function should only update metadata stored in the
+studyinfo.simulations substructure.
+check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.Vary2Modifications">
+<code class="descclassname">functions.</code><code class="descname">Vary2Modifications</code><span class="sig-paren">(</span><em>vary</em>, <em>model</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.Vary2Modifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>modifications_set=Vary2Modifications(vary)
+Purpose: convert specification of things to vary into a set of
+modifications indicating how to vary the desired things. the returned set
+of modifications has one element per point in search space; each element
+can be passed along with DynaSim model or specification to
+ApplyModifications to produce the modified object.
+Inputs:</p>
+<blockquote>
+<div>vary: {object, variable, values; ...}</div></blockquote>
+<dl class="docutils">
+<dt>Outputs:</dt>
+<dd><dl class="first last docutils">
+<dt>modifications_set: </dt>
+<dd>{{object,variable,value1;...},{object,variable,value2;...},...}</dd>
+</dl>
+</dd>
+</dl>
+<p>example:
+vary={&#8216;pop1&#8217;,&#8217;gNa&#8217;,[100 120]};
+mod_set=Vary2Modifications(vary); % {{&#8216;pop1&#8217;,&#8217;gNa&#8217;,100},{&#8216;pop1&#8217;,&#8217;gNa&#8217;,120}}
+for i=1:length(mod_set)</p>
+<blockquote>
+<div>data(i)=SimulateModel(<a class="reference external" href="mailto:'dv/dt=&#37;&#52;&#48;current+10">'dv/dt=<span>&#64;</span>current+10</a>; {iNa,iK}&#8217;,&#8217;modifications&#8217;,mod_set{i});
+figure; plot(data(i).time,data(i).(data(i).labels{1}))</div></blockquote>
+<p>end
+note: the same data set can be obtained directly from SimulateModel by:
+data=SimulateModel(<a class="reference external" href="mailto:'dv/dt=&#37;&#52;&#48;current+10">'dv/dt=<span>&#64;</span>current+10</a>; {iNa,iK}&#8217;,&#8217;vary&#8217;,vary);</p>
+<p>vary={&#8216;E&#8217;,&#8217;gNa&#8217;,[100 120]};
+vary={&#8216;E&#8217;,&#8217;gNa&#8217;,[100 120];&#8217;E-&gt;I&#8217;,&#8217;gSYN&#8217;,[0 1]};
+vary={&#8216;E&#8217;,&#8217;mechanism_list&#8217;,&#8217;+[iNa,iK]&#8217;};
+vary={&#8216;E&#8217;,&#8217;mechanism_list&#8217;,&#8217;-{iNa,iK}&#8217;};
+vary={&#8216;(E,I)&#8217;,&#8217;gNa&#8217;,[100 120]};
+vary={&#8216;(E,I)&#8217;,&#8217;(EK1,EK2)&#8217;,[-80 -60]};</p>
+<p>NOTES:
+valid groupings:
+for namespace, variable: (), []
+for values: [],{}</p>
+<p>groupings:
+[] - iterate over set
+() - modify objects the same way simultaneously
+{} - use all combinations of one or more elements (e.g., varying mechanism_list)</p>
+<blockquote>
+<div>note: can be prepended by &#8216;+&#8217; or &#8216;-&#8216; to indicate how to vary mechanism_list</div></blockquote>
+<p>valid value types:
+for parameters: numeric ([1 2 3], linspace(0,1,10))
+for mechanisms: strings (&#8216;+[M1,M2]&#8217;, &#8216;-[M1,M2]&#8217;, &#8216;+{M1,M2}&#8217;, &#8216;-{M1,M2}&#8217;)</p>
+<p>for connection mechanisms: indicate namespace by &#8220;source-&gt;target&#8221;</p>
+<p>Examples:
+vary={&#8216;[E,I]&#8217;,&#8217;mechanism_list&#8217;,&#8217;{iNa,iK}&#8217;};
+modifications_set = Vary2Modifications(vary); 
+modifications_set{:}
+vary={&#8216;{E,I}&#8217;,&#8217;mechanism_list&#8217;,&#8217;{iNa,iK}&#8217;};
+modifications_set = Vary2Modifications(vary); 
+modifications_set{:}
+vary={&#8216;{E,I}&#8217;,&#8217;mechanism_list&#8217;,&#8217;+[iNa,iK]&#8217;; &#8216;E&#8217;,&#8217;gNa&#8217;,[100 120]};
+modifications_set = Vary2Modifications(vary); 
+modifications_set{:}
+vary={&#8216;[E,I]&#8217;,&#8217;gNa&#8217;,linspace(100,130,3); &#8216;E-&gt;I&#8217;,&#8217;gSYN&#8217;,[0 1]};
+modifications_set = Vary2Modifications(vary); 
+modifications_set{:}</p>
+<p>See also: ApplyModifications, SimulateModel, GenerateModel
+check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.WriteDynaSimSolver">
+<code class="descclassname">functions.</code><code class="descname">WriteDynaSimSolver</code><span class="sig-paren">(</span><em>model</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.WriteDynaSimSolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>solver_file=WriteDynaSimSolver(model,varargin)
+Purpose: write m-file that numerically inteegrates the model
+Inputs:</p>
+<blockquote>
+<div><p>model: DynaSim model structure (see GenerateModel)
+options:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8216;solver&#8217; <span class="classifier-delimiter">:</span> <span class="classifier">solver for numerical integration (see GetSolveFile)</span></dt>
+<dd>{&#8216;euler&#8217;,&#8217;rk2&#8217;,&#8217;rk4&#8217;} (default: &#8216;rk4&#8217;)</dd>
+<dt>&#8216;tspan&#8217; <span class="classifier-delimiter">:</span> <span class="classifier">time limits of simulation [begin,end] (default: [0 100]) [ms]</span></dt>
+<dd>note: units must be consistent with dt and model equations</dd>
+</dl>
+<p>&#8216;dt&#8217;          : time step used for DynaSim solvers (default: .01) [ms]
+&#8216;downsample_factor&#8217;: downsampling applied during simulation (default: 1, no downsampling)</p>
+<blockquote>
+<div>(only every downsample_factor-time point is stored in memory and/or written to disk)</div></blockquote>
+<dl class="docutils">
+<dt>&#8216;ic&#8217; <span class="classifier-delimiter">:</span> <span class="classifier">numeric array of initial conditions, one value per state </span></dt>
+<dd>variable (default: all zeros). overrides definition in model structure</dd>
+</dl>
+<p>&#8216;random_seed&#8217; : seed for random number generator (default: &#8216;shuffle&#8217;, set randomly) (usage: rng(options.random_seed))
+&#8216;disk_flag&#8217;     : whether to write to disk during simulation instead of storing in memory {0 or 1} (default: 0)</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="docutils">
+<dt>Outputs:</dt>
+<dd>solver_file (e.g., solve_ode.m): function that numerically integrates the model</dd>
+</dl>
+<p>Example 1: test solver production, display function in standard output 
+model=GenerateModel; % test model
+without writing anything to disk:
+WriteDynaSimSolver(model,&#8217;fileID&#8217;,1,&#8217;save_parameters_flag&#8217;,0,&#8217;solver&#8217;,&#8217;rk4&#8217;);
+WriteDynaSimSolver(model,&#8217;fileID&#8217;,1,&#8217;save_parameters_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk4&#8217;);
+model=PropagateFunctions(model);
+WriteDynaSimSolver(model,&#8217;fileID&#8217;,1,&#8217;save_parameters_flag&#8217;,0,&#8217;solver&#8217;,&#8217;rk4&#8217;);
+WriteDynaSimSolver(model,&#8217;fileID&#8217;,1,&#8217;save_parameters_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk4&#8217;);</p>
+<p>Example 2: real-time downsampling
+WriteDynaSimSolver(model,&#8217;downsample_factor&#8217;,10,&#8217;fileID&#8217;,1,&#8217;solver&#8217;,&#8217;rk4&#8217;);</p>
+<p>Example 3: real-time writing data to disk (reduce memory demand)
+WriteDynaSimSolver(model,&#8217;disk_flag&#8217;,1,&#8217;fileID&#8217;,1,&#8217;solver&#8217;,&#8217;rk4&#8217;);</p>
+<p>Example 4: maximally conserve memory: downsample and write to disk
+WriteDynaSimSolver(model,&#8217;disk_flag&#8217;,1,&#8217;downsample_factor&#8217;,10,&#8217;fileID&#8217;,1,&#8217;solver&#8217;,&#8217;rk4&#8217;);</p>
+<p>Examples:
+WriteDynaSimSolver(model,&#8217;solver&#8217;,&#8217;euler&#8217;);
+WriteDynaSimSolver(model,&#8217;solver&#8217;,&#8217;rk2&#8217;);
+WriteDynaSimSolver(model,&#8217;solver&#8217;,&#8217;rk4&#8217;);</p>
+<p>model=GenerateModel; % test model
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,0,&#8217;reduce_function_calls_flag&#8217;,0,&#8217;solver&#8217;,&#8217;rk4&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,1,&#8217;reduce_function_calls_flag&#8217;,0,&#8217;solver&#8217;,&#8217;rk4&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,0,&#8217;reduce_function_calls_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk4&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,1,&#8217;reduce_function_calls_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk4&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,1,&#8217;reduce_function_calls_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk2&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,1,&#8217;reduce_function_calls_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk1&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,1,&#8217;reduce_function_calls_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk1&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;,&#8217;downsample_factor&#8217;,10); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,1,&#8217;reduce_function_calls_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk2&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;,&#8217;dt&#8217;,.001,&#8217;downsample_factor&#8217;,10); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,1,&#8217;reduce_function_calls_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk1&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;,&#8217;dt&#8217;,.001,&#8217;downsample_factor&#8217;,10); v=solve_ode; plot(v); toc
+tic; WriteDynaSimSolver(model,&#8217;save_parameters_flag&#8217;,1,&#8217;reduce_function_calls_flag&#8217;,1,&#8217;solver&#8217;,&#8217;rk1&#8217;,&#8217;filename&#8217;,&#8217;solve_ode.m&#8217;,&#8217;dt&#8217;,.005,&#8217;tspan&#8217;,[0 200],&#8217;downsample_factor&#8217;,10); v=solve_ode; plot(v); toc</p>
+<p>See also: GetSolveFile, SimulateModel, WriteMatlabSolver
+dependencies: CheckOptions, CheckModel
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.WriteMatlabSolver">
+<code class="descclassname">functions.</code><code class="descname">WriteMatlabSolver</code><span class="sig-paren">(</span><em>model</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.WriteMatlabSolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>outfile=WriteMatlabSolver(model,varargin)
+Purpose: write m-file that numerically inteegrates the model
+inputs:</p>
+<blockquote>
+<div><p>model: DSSim model structure (see GenerateModel)
+options:</p>
+<blockquote>
+<div>&#8216;tspan&#8217;,[0 100],[],...          % [beg,end] (units must be consistent with dt and equations)
+&#8216;ic&#8217;,[],[],...                  % initial conditions (overrides definition in model structure)
+&#8216;solver&#8217;,&#8217;euler&#8217;,{&#8216;euler&#8217;,&#8217;rk2&#8217;,&#8217;rk4&#8217;,&#8217;modifiedeuler&#8217;,&#8217;ode23&#8217;,&#8217;ode45&#8217;,&#8217;ode15s&#8217;,&#8217;ode23s&#8217;},... % DSSim and built-in Matlab solvers
+&#8216;solver_options&#8217;,[],[],...      % options from odeset for use with built-in Matlab solvers
+&#8216;dt&#8217;,.01,[],...                 % time step used for fixed step DSSim solvers
+&#8216;modifications&#8217;,[],[],...       % <a href="#id17"><span class="problematic" id="id18">*</span></a>DSSim modifications structure
+&#8216;reduce_function_calls_flag&#8217;,1,[],...   % whether to eliminate internal function calls
+&#8216;coder_flag&#8217;,exist(&#8216;codegen&#8217;)==6,[],... % whether to compile using coder instead of interpreting Matlab
+&#8216;disk_flag&#8217;,0,[],...            % whether to write to disk during simulation instead of storing in memory
+&#8216;downsample_factor&#8217;,1,[],...    % downsampling applied during simulation (only every downsample_factor-time point is stored in memory or written to disk)
+&#8216;random_seed&#8217;,now,[],...        % seed for random number generator (usage: rng(random_seed))</div></blockquote>
+</div></blockquote>
+<dl class="docutils">
+<dt>outputs:</dt>
+<dd>outfile (solve_ode.m)</dd>
+</dl>
+<p>see also: SimulateModel, DSSimToOdefun
+dependencies: CheckOptions, CheckModel
+Check inputs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.catstruct">
+<code class="descclassname">functions.</code><code class="descname">catstruct</code><span class="sig-paren">(</span><em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.catstruct" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>CATSTRUCT   Concatenate or merge structures with different fieldnames</dt>
+<dd><p class="first">X = CATSTRUCT(S1,S2,S3,...) merges the structures S1, S2, S3 ...
+into one new structure X. X contains all fields present in the various
+structures. An example:</p>
+<blockquote>
+<div>A.name = &#8216;Me&#8217; ;
+B.income = 99999 ;
+X = catstruct(A,B) 
+% -&gt; X.name = &#8216;Me&#8217; ;
+%    X.income = 99999 ;</div></blockquote>
+<p>If a fieldname is not unique among structures (i.e., a fieldname is
+present in more than one structure), only the value from the last
+structure with this field is used. In this case, the fields are 
+alphabetically sorted. A warning is issued as well. An axample:</p>
+<blockquote>
+<div>S1.name = &#8216;Me&#8217; ;
+S2.age  = 20 ; S3.age  = 30 ; S4.age  = 40 ;
+S5.honest = false ;
+Y = catstruct(S1,S2,S3,S4,S5) % use value from S4</div></blockquote>
+<p>The inputs can be array of structures. All structures should have the
+same size. An example:</p>
+<blockquote>
+<div>C(1).bb = 1 ; C(2).bb = 2 ;
+D(1).aa = 3 ; D(2).aa = 4 ;
+CD = catstruct(C,D) % CD is a 1x2 structure array with fields bb and aa</div></blockquote>
+<p>The last input can be the string &#8216;sorted&#8217;. In this case,
+CATSTRUCT(S1,S2, ..., &#8216;sorted&#8217;) will sort the fieldnames alphabetically. 
+To sort the fieldnames of a structure A, you could use
+CATSTRUCT(A,&#8217;sorted&#8217;) but I recommend ORDERFIELDS for doing that.</p>
+<p>When there is nothing to concatenate, the result will be an empty
+struct (0x0 struct array with no fields).</p>
+<p>NOTE: To concatenate similar arrays of structs, you can use simple
+concatenation:</p>
+<blockquote>
+<div>A = dir(&#8216;<em>.mat&#8217;) ; B = dir(&#8216;</em>.m&#8217;) ; C = [A ; B] ;</div></blockquote>
+<p>NOTE: This function relies on unique. Matlab changed the behavior of
+its set functions since 2013a, so this might cause some backward
+compatibility issues when dulpicated fieldnames are found.</p>
+<p class="last">See also CAT, STRUCT, FIELDNAMES, STRUCT2CELL, ORDERFIELDS</p>
+</dd>
+</dl>
+<p>version 4.1 (feb 2015), tested in R2014a
+(c) Jos van der Geest
+email: <a class="reference external" href="mailto:jos&#37;&#52;&#48;jasen&#46;nl">jos<span>&#64;</span>jasen<span>&#46;</span>nl</a>
+History
+Created in 2005
+Revisions</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>2.0 (sep 2007) removed bug when dealing with fields containing cell</dt>
+<dd>arrays (Thanks to Rene Willemink)</dd>
+</dl>
+<p>2.1 (sep 2008) added warning and error identifiers
+2.2 (oct 2008) fixed error when dealing with empty structs (thanks to</p>
+<blockquote>
+<div>Lars Barring)</div></blockquote>
+<dl class="docutils">
+<dt>3.0 (mar 2013) fixed problem when the inputs were array of structures</dt>
+<dd>(thanks to Tor Inge Birkenes).
+Rephrased the help section as well.</dd>
+<dt>4.0 (dec 2013) fixed problem with unique due to version differences in</dt>
+<dd>ML. Unique(...,&#8217;last&#8217;) is no longer the deafult.
+(thanks to Isabel P)</dd>
+</dl>
+<p>4.1 (feb 2015) fixed warning with narginchk</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.cell2num">
+<code class="descclassname">functions.</code><code class="descname">cell2num</code><span class="sig-paren">(</span><em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.cell2num" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes a cell matrix of strings and converts
+each cell into a number.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.dynasim_strrep">
+<code class="descclassname">functions.</code><code class="descname">dynasim_strrep</code><span class="sig-paren">(</span><em>str</em>, <em>oldstr</em>, <em>newstr</em>, <em>lpad</em>, <em>rpad</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.dynasim_strrep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Purpose: replace full words by new character strings, ignoring matches
+that appear as sub-strings. note: built-in strrep replaces all matches.
+Examples:
+dynasim_strrep(&#8216;(v)*(-av)&#8217;,&#8217;v&#8217;,&#8217;pop1_v&#8217;)
+dynasim_strrep(&#8216;v-v^2+vav&#8217;,&#8217;v&#8217;,&#8217;pop1_v&#8217;)
+dynasim_strrep(&#8216;v-v-v&#8217;,&#8217;v&#8217;,&#8217;pop1_v&#8217;)
+dynasim_strrep(&#8216;v-v-v^2&#8217;,&#8217;v&#8217;,&#8217;pop1_v&#8217;)
+dynasim_strrep(&#8216;(v-v-v^2)&#8217;,&#8217;v&#8217;,&#8217;pop1_v&#8217;)
+dynasim_strrep(&#8216;E-pop1_V+1&#8217;,&#8217;pop1_V&#8217;,&#8217;pop1_V(n-1)&#8217;)
+dynasim_strrep(&#8216;v=1; u=u+d&#8217;,&#8217;u&#8217;,&#8217;u(n,test)&#8217;)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.ksr">
+<code class="descclassname">functions.</code><code class="descname">ksr</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>h</em>, <em>N</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.ksr" title="Permalink to this definition">¶</a></dt>
+<dd><p>KSR   Kernel smoothing regression</p>
+<dl class="docutils">
+<dt>r=ksr(x,y) returns the Gaussian kernel regression in structure r such that</dt>
+<dd>r.f(r.x) = y(x) + e</dd>
+</dl>
+<p>The bandwidth and number of samples are also stored in r.h and r.n
+respectively.</p>
+<p>r=ksr(x,y,h) performs the regression using the specified bandwidth, h.</p>
+<p>r=ksr(x,y,h,n) calculates the regression in n points (default same as input).</p>
+<p>Without output, ksr(x,y) or ksr(x,y,h) will display the regression plot.</p>
+<p>Algorithm
+The kernel regression is a non-parametric approach to estimate the
+conditional expectation of a random variable:</p>
+<p>E(Y|X) = f(X)</p>
+<p>where f is a non-parametric function. Based on the kernel density
+estimation, this code implements the Nadaraya-Watson kernel regression
+using the Gaussian kernel as follows:</p>
+<p>f(x) = sum(kerf((x-X)/h).*Y)/sum(kerf((x-X)/h))</p>
+<p>See also gkde, ksdensity
+Example 1: smooth curve with noise</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.nearest">
+<code class="descclassname">functions.</code><code class="descname">nearest</code><span class="sig-paren">(</span><em>array</em>, <em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.nearest" title="Permalink to this definition">¶</a></dt>
+<dd><p>NEAREST return the index of an array nearest to a scalar</p>
+<p>[indx] = nearest(array, val)
+Copyright (C) 2002, Robert Oostenveld</p>
+<p>$Log: nearest.m,v $
+Revision 1.3  2004/12/06 12:55:57  roboos
+added support for -inf and inf, respectively returning the first and last occurence of the nearest element</p>
+<p>Revision 1.2  2003/03/17 10:37:28  roberto
+improved general help comments and added copyrights</p>
+<p>mbrealvector(array)
+mbrealscalar(val)
+ensure that it is a column vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.readtext">
+<code class="descclassname">functions.</code><code class="descname">readtext</code><span class="sig-paren">(</span><em>text</em>, <em>delimiter</em>, <em>comment</em>, <em>quotes</em>, <em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.readtext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Usage:     [data, result]= readtext(source, delimiter, comment, quotes, options)</p>
+<dl class="docutils">
+<dt>Whatever text (file) you give it, readtext returns an array of the contents (or send me a </dt>
+<dd>bug report). Matlab can&#8217;t read variable length lines or variable type values with the standard 
+library. readtext can read any text file. Any string (or even regexp) can be delimiting, 
+default is a comma. Everything after (and including) a comment character, until the line end, 
+is ignored. Quote characters may also be given, everything between them is treated as one item. 
+There are options to control what will be converted to numbers and how empty items are saved.</dd>
+</dl>
+<p>If you find any errors, please let me know: peder at axensten dot se.</p>
+<dl class="docutils">
+<dt>source:     the file to be read. May be a file path or just the file name.</dt>
+<dd>OR: The text itself, see &#8216;textsource&#8217;, below.</dd>
+</dl>
+<p>delimiter:  (default: &#8216;,&#8217;) any non-empty string. May be a regexp, but this is slow on large files.</p>
+<dl class="docutils">
+<dt>comment:    (default: &#8216;&#8217;) zero or one character. Anything after (and including) this character, </dt>
+<dd>until the end of the line, will be ignored.</dd>
+<dt>quotes:     (default: &#8216;&#8217;) zero, one (opening quote equals closing), or two characters (opening </dt>
+<dd>and closing quote) to be treated as paired braces. Everything between the quotes will be 
+treated as one item. The quotes will remain. Quotes may be nested.</dd>
+</dl>
+<p>options:    (default: &#8216;&#8217;) may contain (concatenate combined options): 
+- &#8216;textsource&#8217;: source contains the actual text to be processed, not the file name.
+- &#8216;textual&#8217;: no numeric conversion (&#8216;data&#8217; is a cell array of strings only), 
+- &#8216;numeric&#8217;: everything is converted to a number or NaN (&#8216;data&#8217; is a numeric array, empty items</p>
+<blockquote>
+<div>are converted to NaNs unless &#8216;empty2zero&#8217; is given),</div></blockquote>
+<ul class="simple">
+<li>&#8216;empty2zero&#8217;: an empty field is saved as zero, and</li>
+<li>&#8216;empty2NaN&#8217;: an empty field is saved as NaN.</li>
+<li>&#8216;usewaitbar&#8217;: call waitbar to report progress. If you find the wait bar annoying, get &#8216;waitbar 
+alternative&#8217; at <a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/loadFile.do?objectId=11398">http://www.mathworks.com/matlabcentral/fileexchange/loadFile.do?objectId=11398</a></li>
+</ul>
+<dl class="docutils">
+<dt>data:       A cell array containing the read text, divided into cells by delimiter and line </dt>
+<dd>endings. &#8216;data&#8217; will be empty if the file is not found, could not be opened, or is empty. 
+With the option &#8216;numeric&#8217;, &#8216;data&#8217; will be a numeric array, with &#8216;textual&#8217;, &#8216;data&#8217; will be a 
+cell array of strings only, and otherwise it will be a mixed cell array. For Matlab &lt; version 7, 
+returned strings may contain leading white-space.</dd>
+</dl>
+<p>result:     a structure:
+.min: minimum number of columns found in a line.
+.max: number of columns in &#8216;data&#8217;, before removing empty columns.
+.rows: number of rows in &#8216;data&#8217;, before removing empty rows. 
+.numberMask: true, if numeric conversion (&#8216;NaN&#8217; converted to NaN counts).
+.number: number of numeric conversions (&#8216;NaN&#8217; converted to NaN counts).
+.emptyMask: true, if empty item in file.
+.empty: number of empty items in file.
+.stringMask: true, if non-number and non-empty.
+.string: number of non-number, non-empty items.
+.quote: number of quotes.</p>
+<p>EXAMPLE 1:  [a,b]= readtext(&#8216;txtfile&#8217;, &#8216;[,t]&#8217;, &#8216;#&#8217;, &#8216;&#8221;&#8217;, &#8216;numeric-empty2zero&#8217;)
+This will load the file &#8216;txtfile&#8217; into variable a, treating any of tab or comma as</p>
+<blockquote>
+<div>delimiters. Everything from and including # to the next newline will be ignored. 
+Everything between two double quotes will be treated as a string. Everything will 
+be converted to numbers and a numeric array returned. Non-numeric items will become 
+NaNs and empty items are converted to zero.</div></blockquote>
+<p>EXAMPLE 2:  a= readtext(&#8216;The, actual, text, to, process&#8217;, &#8216;,&#8217;, &#8216;&#8217;, &#8216;&#8217;, &#8216;textsource&#8217;)
+This will process the actual text string, returning a cell string of the five words.</p>
+<p>COPYRIGHT (C) Peder Axensten (peder at axensten dot se), 2006-2007.
+INSPIRATION: loadcell.m (id 1965). The goal of readtext is to be at least as flexible (you be</p>
+<blockquote>
+<div>the judge) and quicker. On my test file (see below), readtext is about 3&#8211;4 times 
+as quick, maybe even more on large files. In readtext you may use a regexp as 
+delimiter and it can ignore comments in the text file.</div></blockquote>
+<dl class="docutils">
+<dt>SPEED:      Reading a 1MB file (150000 items!) with &#8216;numeric&#8217; takes about 100 seconds on a </dt>
+<dd>fairly slow system. Time scales approximately linearly with input file size.</dd>
+</dl>
+<ul class="simple">
+<li>Conversion from string to numeric is slow (I can&#8217;t do anything about this), but using the 
+option &#8216;textual&#8217; is a lot quicker (above case takes 12 seconds).</li>
+<li>Using a regexp delimiter is slower (during initializing), it adds 250 seconds!</li>
+</ul>
+<p>HISTORY:
+Version 1.0, 2006-05-03.
+Version 1.1, 2006-05-07:
+- Made &#8216;options&#8217; case independent. 
+- Removed result.errmess &#8211; now use error(errmess) instead. 
+- Removed result.nan &#8211; it was equivalent to result.string, so check this instead.
+- Added some rows&#8217;, &#8216;result&#8217; fields: &#8216;numberMask&#8217;, &#8216;emptyMask&#8217;, and &#8216;stringMask&#8217;</p>
+<blockquote>
+<div>(see &#8216;result:&#8217;, above).</div></blockquote>
+<ul class="simple">
+<li>A few small bug fixes.</li>
+</ul>
+<p>Version 1.2, 2006-06-06:
+- Now works in Matlab 6.5.1 (R13SP1) (maybe 6.5 too), versions &lt;6.5 will NOT work.
+Version 1.3, 2006-06-20:
+- Better error report when file open fails. 
+- Somewhat quicker. 
+- Recommends &#8216;waitbar alternative&#8217;. Ok with Matlab orig. waitbar too, of course. 
+Version 1.4, 2006-07-14:
+- Close waitbar instead of deleting it, and some other minor waitbar compatibility fixes. 
+Version 1.5, 2006-08-13:
+- No more (La)TeX formatting of file names. 
+- Prefixed waitbar messages with &#8216;(readtext)&#8217;. 
+Version 1.6, 2006-10-02:
+- Better removal of comments. Could leave an empty first row before. 
+- Added a &#8216;usewaitbar&#8217; option. 
+- Now removes empty last columns and rows. 
+Version 1.7, 2006-01-04:
+- Quicker in &#8216;mixed&#8217; and &#8216;numeric&#8217; modes. It&#8217;s still the numeric conversion that&#8217;s slow. 
+- Made newline handling more robust. 
+- Made numeric conversion more robust (now ignores leading space chars). 
+- Now emits an error if delimiter is empty.
+- Added some stuff to the help text.
+- Simplified code somewhat. 
+Version 1.8, 2007-03-08:
+- Fixed a problem when the comment character was a regexp character, such as &#8216;*&#8217;. 
+- Fixed a problem when reading files with no data. 
+Version 1.9, 2007-03-26:
+- Can now handle a string directly, not just files. See &#8216;textsource&#8217;, in help readtext.
+- Improved compatibility with Matlab 6.x regarding waitbar calls. 
+- Fixed a bug where readtext failed to recognize a quote if there was only one in the text.
+- Fixed a bug when processing source of delimiters only.
+- Help text: added an example, edited some in general.</p>
+<p>TO DO:
+- Add result.quoteMask.
+- Add &#8216;removeemptycolumns&#8217; and &#8216;removeemptyrows&#8217; options. 
+- Use optional id/value pairs for options:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;Delimiter&#8217;, &lt;string&gt;                  (default is &#8216;,&#8217;)</li>
+<li>&#8216;RegExpDelimiter&#8217;, &lt;regexp&gt;            (default is &#8216;&#8217;)</li>
+<li>&#8216;CommentChar&#8217;, &lt;string&gt;                (default is &#8216;&#8217;)</li>
+<li>&#8216;Quote&#8217;, &#8216;&#8217;/&lt;one char&gt;/&lt;two chars&gt;     (default is &#8216;&#8217;)</li>
+<li>&#8216;Output&#8217;, &#8216;Mixed&#8217;/&#8217;Textual&#8217;/&#8217;Numeric&#8217;  (default is &#8216;Mixed&#8217;)</li>
+<li>&#8216;EmptyNum&#8217;, NaN/Inf/-Inf/&lt;number&gt;      (default is NaN for &#8216;mixed&#8217; and &#8216;&#8217; for &#8216;textual&#8217;)</li>
+<li>&#8216;WaitBar&#8217;, &#8216;off&#8217;/&#8217;on&#8217;                  (default is &#8216;off&#8217;)</li>
+</ul>
+<p>&#8216;Delimiter&#8217; and &#8216;RegExpDelimiter&#8217; are exclusive.</p>
+</div></blockquote>
+<p>KEYWORDS:     import, read, load, text, delimited, cell, numeric, array, flexible</p>
+<p>REQUIREMENTS: Matlab 7.0.1 (R14SP1).</p>
+<p>Read (or set to default) the input arguments.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.setprod">
+<code class="descclassname">functions.</code><code class="descname">setprod</code><span class="sig-paren">(</span><em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.setprod" title="Permalink to this definition">¶</a></dt>
+<dd><p>SETPROD product of multiple sets.</p>
+<blockquote>
+<div><p>X = SETPROD(A,B,C,...) returns the cartesian product of the sets 
+A,B,C, etc, where A,B,C, are numeric or character arrays.</p>
+<p>Example: A = [-1 -3 -5];   B = [10 11];   C = [0 1];</p>
+<p>X = SETPROD(A,B,C)
+X =</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-5</span></kbd></td>
+<td>10     0</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-3</span></kbd></td>
+<td>10     0</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-1</span></kbd></td>
+<td>10     0</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-5</span></kbd></td>
+<td>11     0</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-3</span></kbd></td>
+<td>11     0</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-1</span></kbd></td>
+<td>11     0</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-5</span></kbd></td>
+<td>10     1</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-3</span></kbd></td>
+<td>10     1</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-1</span></kbd></td>
+<td>10     1</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-5</span></kbd></td>
+<td>11     1</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-3</span></kbd></td>
+<td>11     1</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-1</span></kbd></td>
+<td>11     1</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+</div></blockquote>
+<p>Mukhtar Ullah
+<a class="reference external" href="mailto:mukhtar&#46;ullah&#37;&#52;&#48;informatic&#46;uni-rostock&#46;de">mukhtar<span>&#46;</span>ullah<span>&#64;</span>informatic<span>&#46;</span>uni-rostock<span>&#46;</span>de</a>
+September 20, 2004</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.tight_subplot">
+<code class="descclassname">functions.</code><code class="descname">tight_subplot</code><span class="sig-paren">(</span><em>Nh</em>, <em>Nw</em>, <em>gap</em>, <em>marg_h</em>, <em>marg_w</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.tight_subplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>tight_subplot creates &#8220;subplot&#8221; axes with adjustable gaps and margins</p>
+<p>ha = tight_subplot(Nh, Nw, gap, marg_h, marg_w)</p>
+<blockquote>
+<div><blockquote>
+<div><dl class="docutils">
+<dt>in:  Nh      number of axes in hight (vertical direction)</dt>
+<dd><p class="first">Nw      number of axes in width (horizontaldirection)
+gap     gaps between the axes in normalized units (0...1)</p>
+<blockquote>
+<div>or [gap_h gap_w] for different gaps in height and width</div></blockquote>
+<dl class="last docutils">
+<dt>marg_h  margins in height in normalized units (0...1)</dt>
+<dd>or [lower upper] for different lower and upper margins</dd>
+<dt>marg_w  margins in width in normalized units (0...1)</dt>
+<dd>or [left right] for different left and right margins</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>out:  ha     array of handles of the axes objects</dt>
+<dd>starting from upper left corner, going row-wise as in
+going row-wise as in</dd>
+<dt>Example: ha = tight_subplot(3,2,[.01 .03],[.1 .01],[.01 .01])</dt>
+<dd>for ii = 1:6; axes(ha(ii)); plot(randn(10,ii)); end
+set(ha(1:4),&#8217;XTickLabel&#8217;,&#8217;&#8216;); set(ha,&#8217;YTickLabel&#8217;,&#8217;&#8216;)</dd>
+</dl>
+</div></blockquote>
+<p>Pekka Kumpulainen 20.6.2010   &#64;tut.fi
+Tampere University of Technology / Automation Science and Engineering</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="functions.toString">
+<code class="descclassname">functions.</code><code class="descname">toString</code><span class="sig-paren">(</span><em>var</em>, <em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#functions.toString" title="Permalink to this definition">¶</a></dt>
+<dd><p>TOSTRING    produce string representation of any datatype</p>
+<p>S = TOSTRING(A) produces a string representation of A, where 
+class(A) can be one of</p>
+<blockquote>
+<div>double,   single                          
+logical,       
+char,          
+int8,     uint8       
+int16,    uint16 
+int32,    uint32 
+int64,    uint64  
+cell,          
+struct,  
+function_handle, 
+(user-implemented class name)</div></blockquote>
+<p>The default string represenation is as verbose as possible.
+That means the contents of structure fields, cell array 
+entries, etc. are representated in fully expanded form.</p>
+<p>S = TOSTRING(A, &#8216;disp&#8217;) produces a string representaion that 
+is identical to what the command &#8216;disp(A)&#8217; would produce.</p>
+<p>S = TOSTRING(A, &#8216;compact&#8217;) or S = TOSTRING(A, N) (with N a positive
+integer) limits the number of digits displayed in numerical arrays 
+to either 4 (&#8216;compact&#8217;) or N.</p>
+<p>EXAMPLE 1:</p>
+<blockquote>
+<div><p>&gt;&gt; a = struct(&#8216;someField&#8217;, uint32(10*rand(2)), &#8216;otherField&#8217;, {{[]}});
+&gt;&gt; S = toString(a)</p>
+<p>S =</p>
+<dl class="docutils">
+<dt>1x1 struct:       </dt>
+<dd><dl class="first last docutils">
+<dt>someField: [9  7]</dt>
+<dd>[2  2]</dd>
+</dl>
+</dd>
+</dl>
+<p>otherField: { [] }</p>
+<p>&gt;&gt; S = toString(a, &#8216;disp&#8217;)</p>
+<p>S =</p>
+<blockquote>
+<div><blockquote>
+<div>someField: [2x2 uint32]</div></blockquote>
+<p>otherField: []</p>
+</div></blockquote>
+<p>EXAMPLE 2:</p>
+<p>&gt;&gt; a = rand(2,2,2,2);
+&gt;&gt; S = toString(rand(2,2,3,2)</p>
+<blockquote>
+<div><p>S =</p>
+<blockquote>
+<div><p>(:,:,1,1) =                                  
+[5.501563428984222e-01   5.870447045314168e-01]
+[6.224750860012275e-01   2.077422927330285e-01]</p>
+<p>(:,:,1,2) =                                  
+[4.356986841038991e-01   9.233796421032439e-01]
+[3.111022866504128e-01   4.302073913295840e-01]</p>
+<p>(:,:,2,1) =                                  
+[3.012463302794907e-01   2.304881602115585e-01]
+[4.709233485175907e-01   8.443087926953891e-01]</p>
+<p>(:,:,2,2) =                                  
+[1.848163201241361e-01   9.797483783560852e-01]
+[9.048809686798929e-01   4.388699731261032e-01]</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<p>EXAMPLE 3:</p>
+<blockquote>
+<div><p>&gt;&gt; a = cellfun(&#64;(~)rand(3), cell(2), &#8216;UniformOutput&#8217;,false);
+&gt;&gt; a{end} = cell(2);
+&gt;&gt; a{end}{end} = &#64;sin;
+&gt;&gt; S = toString(a, 2)</p>
+<p>S =</p>
+<blockquote>
+<div>{  [0.01   0.92   0.42]  [0.61   0.24   0.77]  }
+{  [0.60   0.00   0.46]  [0.19   0.92   0.19]  }
+{  [0.39   0.46   0.77]  [0.74   0.27   0.29]  }
+{                                              }
+{  [0.32   0.04   0.47]     {  []   []   }     }
+{  [0.78   0.18   0.15]     {  []  &#64;sin  }     }
+{  [0.47   0.72   0.34]                        }</div></blockquote>
+</div></blockquote>
+<p>See also disp, num2str, func2str, sprintf.
+source: <a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/38566-string-representation-of-any-data-type">http://www.mathworks.com/matlabcentral/fileexchange/38566-string-representation-of-any-data-type</a>
+If you find this work useful and want to make a donation:
+<a class="reference external" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6G3S5UYM7HJ3N">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6G3S5UYM7HJ3N</a>
+Please report bugs and inquiries to:</p>
+<p>Name       : Rody P.S. Oldenhuis
+E-mail     : <a class="reference external" href="mailto:oldenhuis&#37;&#52;&#48;gmail&#46;com">oldenhuis<span>&#64;</span>gmail<span>&#46;</span>com</a>    (personal)</p>
+<blockquote>
+<div><a class="reference external" href="mailto:oldenhuis&#37;&#52;&#48;luxspace&#46;lu">oldenhuis<span>&#64;</span>luxspace<span>&#46;</span>lu</a>  (professional)</div></blockquote>
+<p>Affiliation: LuxSpace s�rl
+Licence    : BSD
+If you find this work useful and want to show your appreciation:
+<a class="reference external" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6G3S5UYM7HJ3N">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6G3S5UYM7HJ3N</a>
+Authors</p>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="mat-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to DynaSim&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Trustees of Boston University.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

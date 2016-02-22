@@ -1,0 +1,30 @@
+.. DynaSim documentation master file, created by
+   sphinx-quickstart on Sun Feb 21 20:45:03 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to DynaSim's documentation!
+===================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+Apparently need to reference everything to a "module" for the autodocumentation to work.
+
+Let's look at a link to :func:`dynasim.AnalyzeData` since it's a good function. It works! Links need to be indicated by their module!
+
+
+
+functions
+^^^
+
+.. automodule:: functions
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

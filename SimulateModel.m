@@ -1,20 +1,31 @@
 function [data,studyinfo]=SimulateModel(model,varargin)
-%% data=SimulateModel(model,'option',value,...)
-% Purpose: manage simulation of a DynaSim model. This high-level function 
-% offers many options to control the number of simulations, how the model is 
-% optionally varied across simulations, and how the numerical integration
-% is performed. It can optionally save the simulated data and create/submit
-% simulation jobs to a compute cluster.
-% Inputs:
-%   model: DynaSim model structure or equations (see GenerateModel and 
-%          CheckModel for more details)
-% 
-%   solver options (provided as key/value pairs: 'option1',value1,'option2',value2,...):
-%     'solver'      : solver for numerical integration (see GetSolveFile)
-%                     {'euler','rk2','rk4'} (default: 'rk4')
-%     'tspan'       : time limits of simulation [begin,end] (default: [0 100]) [ms]
-%                     note: units must be consistent with dt and model equations
-%     'dt'          : time step used for DynaSim solvers (default: .01) [ms]
+% Manage simulation of a DynaSim model. This high-level function offers many
+% options to control the number of simulations, how the model is optionally
+% varied across simulations, and how the numerical integration is performed. It
+% can optionally save the simulated data and create/submit simulation jobs to a
+% compute cluster. :func:`dynasim.SimulateModel` you can cite functions inside functions
+%
+% :param model: DynaSim model structure or equations (see GenerateModel and
+%               CheckModel for more details)
+%
+% :param varargin: any of the options listed below provided as key/value pairs,
+%                  e.g. `SimulateModel(model,'option_name1',option_value1,'option_name2',option_value2...)`
+%
+% :param 'solver',solver_value: Solver for numerical integration (see GetSolveFile).
+%
+%     Possible values: 'euler','rk2','rk4'(default)
+%
+% :param 'tspan',tspan_value: Time limits of simulation in **milliseconds**.
+%
+%     Possible values: 1x2 <int> vector, e.g. [begin_time, end_time] (default: [0 100])
+%
+%     .. note:: Units must be consistent with `src.SimulateModel.'dt',dt_value` and model equations!
+%
+% .. _src.SimulateModel.dt:
+%
+% :param 'dt',dt_value: Time step used for DynaSim solvers in **milliseconds**.
+%     Possible values: <float> (default: 0.01)
+%
 %     'downsample_factor': downsampling applied during simulation (default: 1, no downsampling) 
 %                     (only every downsample_factor-time point is stored in memory and/or written to disk)
 %     'ic'          : numeric array of initial conditions, one value per state 
