@@ -3,10 +3,12 @@
 gK=36 % max potassium conductance
 EK=-77
 IC_noise=0; n_IC=0
+aoffset=.01
+boffset=.01
 
 % functions
-aN(X) = (.1-.01*(X+65))./(exp(1-.1*(X+65))-1)
-bN(X) = .125*exp(-(X+65)/80)
+aN(X) = (.1-.01*(X+65))./(exp(1-.1*(X+65))-1)+aoffset
+bN(X) = .125*exp(-(X+65)/80)-boffset
 IK(X,n) = gK.*n.^4.*(X-EK)
 
 % ODEs and ICs
