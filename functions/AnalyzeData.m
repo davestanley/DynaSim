@@ -35,7 +35,7 @@ end
 
 % confirm function handle
 if ~isa(func,'function_handle')
-  error('post-processing function must be supplied as a function handle');
+  error('Post-processing function must be supplied as a function handle.');
 end
 % confirm single analysis function
 if numel(func)>1
