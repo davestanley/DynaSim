@@ -634,7 +634,7 @@ try
         % do analysis and plotting while saving results
         siminfo=studyinfo.simulations(sim_ind);
         for f=1:length(siminfo.result_functions)
-          result=AnalyzeData(tmpdata,siminfo.result_functions{f},'result_file',siminfo.result_files{f},'save_data_flag',1,'save_results_flag',1,siminfo.result_options{f}{:});
+          result=AnalyzeStudy(tmpdata,siminfo.result_functions{f},'result_file',siminfo.result_files{f},'save_data_flag',1,'save_results_flag',1,siminfo.result_options{f}{:});
           % since the plots are saved, close all generated figures
           if all(ishandle(result))
             close(result);
@@ -644,12 +644,12 @@ try
         % do analysis and plotting without saving results
         if ~isempty(options.analysis_functions)
           for f=1:length(options.analysis_functions)
-            tmpdata=AnalyzeData(tmpdata,options.analysis_functions{f},'result_file',[],'save_data_flag',0,'save_results_flag',options.save_results_flag,options.analysis_options{f}{:});
+            tmpdata=AnalyzeStudy(tmpdata,options.analysis_functions{f},'result_file',[],'save_data_flag',0,'save_results_flag',options.save_results_flag,options.analysis_options{f}{:});
           end
         end
         if ~isempty(options.plot_functions)
           for f=1:length(options.plot_functions)
-            AnalyzeData(tmpdata,options.plot_functions{f},'result_file',[],'save_data_flag',0,'save_results_flag',options.save_results_flag,options.plot_options{f}{:});
+            AnalyzeStudy(tmpdata,options.plot_functions{f},'result_file',[],'save_data_flag',0,'save_results_flag',options.save_results_flag,options.plot_options{f}{:});
           end
         end
       end
