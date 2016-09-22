@@ -256,7 +256,7 @@ options=CheckOptions(varargin,{...
 % more options: remove_solve_dir, remove_batch_dir, post_downsample_factor
 
 if options.parallel_flag
-  error('parallel computing has been disabled for debugging. ''set parallel_flag'' to 0');
+  %error('parallel computing has been disabled for debugging. ''set parallel_flag'' to 0');
 end
 
 if options.compile_flag && options.reduce_function_calls_flag==0
@@ -539,7 +539,7 @@ try
       % (i.e., if is first simulation or a search space varying mechanism list)
       if sim==1 || (~isempty(modifications_set{1}) && any(cellfun(@(x)strcmp(x{2},'mechanism_list'),modifications_set)))
         % prepare file that solves the model system
-        if isempty(options.solve_file) || (~exist(options.solve_file,'file') && ~exist([options.solve_file '.mexa64'],'file') &&  ~exist([options.solve_file '.mexa32'],'file'))
+        if isempty(options.solve_file) || (~exist(options.solve_file,'file') && ~exist([options.solve_file '.mexa64'],'file') &&  ~exist([options.solve_file '.mexa32'],'file') && ~exist([options.solve_file '.mexmaci64'],'file'))
           options.solve_file=GetSolveFile(model,studyinfo,options); % store name of solver file in options struct
         end
         % todo: consider providing better support for studies that produce different m-files per sim (e.g., varying mechanism_list)
