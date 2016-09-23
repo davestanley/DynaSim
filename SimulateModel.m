@@ -451,11 +451,50 @@ if options.parallel_flag==1
   % or instead: require user to open pool before calling SimulateModel...
 %   parpool(options.num_cores) 
   % run embarrassingly-parallel simulations
+  
+  
+  % Previous parallel code would overwrite the same params.mat file on each
+  % parallel iteration, resulting in the same parameters being used for all
+  % simulations. This code circumvents this issue by assigning a different
+  % study directory to each simulation.
+  
+  % List any core files - these should be deleted, as they are huge (debug)
+  system('find * -name "core*"','-echo');
+     
+  
+  for sim = 1:length(modifications_set)
+      mystudydirs{sim} = fullfile(options.study_dir,['output_parfor_' num2str(sim)]);                           
+      
+      % Remove any "core" files that might be present and taking up space
+      if exist(fullfile(mystudydirs{sim},'solve'),'dir')
+          system(['rm -rf ' fullfile(mystudydirs{sim},'solve','core*')],'-echo');
+      end
+      
+      % Create solve folders as needed
+      if ~exist(mystudydirs{sim},'dir')                
+          mkdir(fullfile(mystudydirs{sim}));           
+          if ~exist(fullfile(mystudydirs{sim},'solve'),'dir') 
+              mkdir(fullfile(mystudydirs{sim},'solve'));           
+          end
+      end
+      
+      
+      [success,msg]=copyfile([strrep(solve_file,'_mex','') '*'],fullfile(mystudydirs{sim},'solve'));    % Copy the mex file into each study directory, to avoid re-compiling
+      if ~success, error(msg); end
+      
+  end
+  
+  % Verify all core files are deleted
+  system('find * -name "core*"','-echo');
+  
   clear data
   parfor sim=1:length(modifications_set)
-    data(sim)=SimulateModel(model,'modifications',modifications_set{sim},'solve_file',solve_file,keyvals{:});
+    %data(sim)=SimulateModel(model,'modifications',modifications_set{sim},'solve_file',solve_file,keyvals{:});       % Original parfor code
+    data(sim)=SimulateModel(model,'modifications',modifications_set{sim},keyvals{:},'study_dir',mystudydirs{sim});  % My modification; now specifies a separate study directory for each sim
     disp(sim);
   end
+
+  
   % close pool
 %   delete(gcp)
 % todo: sort data sets by things varied in modifications_set
