@@ -459,11 +459,15 @@ if options.parallel_flag==1
   % study directory to each simulation.
   
   % List any core files - these should be deleted, as they are huge (debug)
+  system (['ls ' fullfile(options.study_dir,'output*')],'-echo');
   system('find * -name "core*"','-echo');
-     
+ 
   
   for sim = 1:length(modifications_set)
       mystudydirs{sim} = fullfile(options.study_dir,['output_parfor_' num2str(sim)]);                           
+      
+      fprintf(['rm -rf ' fullfile(mystudydirs{sim}) '\n']);
+      system (['rm -rf ' fullfile(mystudydirs{sim})],'-echo');
       
       % Remove any "core" files that might be present and taking up space
       if exist(fullfile(mystudydirs{sim},'solve'),'dir')
