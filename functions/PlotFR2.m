@@ -30,12 +30,20 @@ handles=[];
 
 options=CheckOptions(varargin,{...
   'plot_type','heatmap_sorted',{'heatmap','heatmap_sorted','meanFR','meanFRdens','summary'},...
+  'variable',[],[],...        
+  'threshold',1e-5,[],... % slightly above zero in case variable is point process *_spikes {0,1}
+  'bin_size',.05,[],...  % 30
+  'bin_shift',.01,[],... % 10
+  'exclude_data_flag',0,{0,1},...
   });
+
+
+keyvals=Options2Keyval(rmfield(options,{'plot_type'}));
 
 
 % calc firing rates if not already present in data
 if all(cellfun(@isempty,regexp(fields,'.*_FR$')))
-  data=CalcFR(data,varargin{:}); % equivalent: data=AnalyzeStudy(data,@CalcFR,varargin{:});
+  data=CalcFR(data,keyvals{:}); % equivalent: data=AnalyzeStudy(data,@CalcFR,varargin{:});
   fields=fieldnames(data);
 end
 % get list of fields with firing rate data
@@ -295,7 +303,7 @@ end
         end
         
         ht=320; % height per subplot row (=per population or FR data set)
-        figure('units','normalized','position',[0,1-min(.33*num_rows,1),min(.25*num_cols,1) min(.33*num_rows,1)]);
+        handles(1) = figure('units','normalized','position',[0,1-min(.33*num_rows,1),min(.25*num_cols,1) min(.33*num_rows,1)]);
         hsp = subplot_grid(num_rows,num_cols);
         
         sim_index = 0;
