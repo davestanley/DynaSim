@@ -306,13 +306,18 @@ end
         handles(1) = figure('units','normalized','position',[0,1-min(.33*num_rows,1),min(.25*num_cols,1) min(.33*num_rows,1)]);
         hsp = subplot_grid(num_rows,num_cols);
         
-        sim_index = 0;
+        axis_counter = 0;
         for row=1:num_rows
             for col=1:num_cols
                 
-                hsp.set_gca(row,col);
+                sim_index=sim_indices(col,row); % index into data array for this subplot
+                axis_counter=axis_counter+1; % number subplot axis we're on
+                if isnan(sim_index)
+                  continue;
+                end
                 
-                sim_index = sim_index+1;
+                hsp.set_gca(axis_counter);
+                
                 num_pops = 1;
                 if isfield(data,'varied')
                   if num_sims>1
