@@ -462,17 +462,14 @@ if options.parallel_flag==1
   system (['ls ' fullfile(options.study_dir,'output*')],'-echo');
   system('find * -name "core*"','-echo');
  
+  % Generate unique* ID based on date and time (*as long as they dont start on the
+  % exact same second...). Using these unique identfiers will now enable
+  % you to run multiple sims in the same folder.
+  uniqueID = datestr(now,30);
+  
   
   for sim = 1:length(modifications_set)
-      mystudydirs{sim} = fullfile(options.study_dir,['output_parfor_' num2str(sim)]);                           
-      
-      fprintf(['rm -rf ' fullfile(mystudydirs{sim}) '\n']);
-      system (['rm -rf ' fullfile(mystudydirs{sim})],'-echo');
-      
-      % Remove any "core" files that might be present and taking up space
-      if exist(fullfile(mystudydirs{sim},'solve'),'dir')
-          system(['rm -rf ' fullfile(mystudydirs{sim},'solve','core*')],'-echo');
-      end
+      mystudydirs{sim} = fullfile(options.study_dir,['output_parfor_' uniqueID '_' num2str(sim)]);                           
       
       % Create solve folders as needed
       if ~exist(mystudydirs{sim},'dir')                
@@ -487,10 +484,7 @@ if options.parallel_flag==1
       if ~success, error(msg); end
       
   end
-  
-  % Verify all core files are deleted
-  system('find * -name "core*"','-echo');
-  
+ 
   clear data
   parfor sim=1:length(modifications_set)
     %data(sim)=SimulateModel(model,'modifications',modifications_set{sim},'solve_file',solve_file,keyvals{:});       % Original parfor code
@@ -499,9 +493,33 @@ if options.parallel_flag==1
   end
 
   
+% Clean up files leftover from sim
+% Unfortunately we can't remove the folders due to locked .nfs files.
+% Need to do this manually later...
+  for sim = 1:length(mystudydirs)
+      
+    % Remove any "core" files that might be present and taking up space
+    if exist(fullfile(mystudydirs{sim},'solve'),'dir')
+      delete(fullfile(mystudydirs{sim},'solve','core*'));
+      delete(fullfile(mystudydirs{sim},'solve','params.mat'));
+      delete(fullfile(mystudydirs{sim},'solve','solve_ode*'));
+      %delete(fullfile(mystudydirs{sim},'solve','*'))
+      %rmdir(fullfile(mystudydirs{sim},'solve'));
+      %rmdir(fullfile(mystudydirs{sim}));
+    end
+  end
+  
+  % Delete any core files in parent directory
+  delete(fullfile(options.study_dir,'core*'));
+  
+  % Verify all core files are deleted
+  [~,result] = system('find * -name "core*"','-echo');
+  if ~isempty(result); fprintf(strcat(result,'\n')); warning('Core files found. Consider deleting to free up space'); end
+  
   % close pool
 %   delete(gcp)
 % todo: sort data sets by things varied in modifications_set
+% todo: Figure out how to delete locked .nfs files
   return
 end
 
