@@ -27,6 +27,11 @@ for i = 1:length(data)
         data_out(i).(labels{j}) = mean(data(i).(labels{j}),2);
     end
     
+    % Set the size of all populations to 1
+    for j = 1:length(data(i).model.specification.populations)
+        data_out(i).model.specification.populations(j).size = 1;
+    end
+    
 end
 
 
