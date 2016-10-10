@@ -360,7 +360,7 @@ end
                 if strcmp(options.plot_type,'heatmap')
                     %subplot(nsets,nc,1+(k-1)*nc); % imagesc(t,cells,FR)
                     imagesc(time,1:ncells,dat'); axis xy
-                    hsp.figtitle([popname ': firing rates (Hz) ' text_string{row,col}]);
+                    hsp.figtitle([popname ': firing rates (Hz) ']); title(text_string{row,col});
                     if row == num_rows; xlabel('time (ms)'); end; ylabel([popname ' cell index']);
                     caxis(rlims); xlim(tlims);
                     if ncells<=10
