@@ -4,7 +4,8 @@
 function data = CalcSumOverFields(data, fields, output_field_name)
     % Purpose: Creates a new field in data that is the sum of a bunch of
     % other fields (specified by the "fields" cell array). Stores the output
-    % in "output_field_name"
+    % in "output_field_name." Useful for adding multiple ionic currents
+    % together.
     % Inputs:
     %   data - DynaSim data structure (see CheckData)
     %   fields - cell array of field names. These will be summed and stored
