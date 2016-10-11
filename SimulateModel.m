@@ -459,8 +459,8 @@ if options.parallel_flag==1
   % study directory to each simulation.
   
   % List any core files - these should be deleted, as they are huge (debug)
-  system (['ls ' fullfile(options.study_dir,'output*')],'-echo');
-  system('find * -name "core*"','-echo');
+%   system (['ls ' fullfile(options.study_dir,'output*')],'-echo');
+%   system('find * -name "core*"','-echo');
  
   % Generate unique* ID based on date and time (*as long as they dont start on the
   % exact same second...). Using these unique identfiers will now enable
