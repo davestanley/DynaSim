@@ -1,35 +1,38 @@
-function handles=PlotFunc(data,myfunc)
-%% PlotFunc(data,plot_function_handle)
-% Purpose: takes in a handle for a plotting function that operates on a
-%          single DynaSim data structure and applies that function to each
-%          element in a data structure array (e.g. the output of a
-%          parameter sweep). Arranges the resulting plots in a grid similar
-%          to PlotData and PlotFR2.
+function [handles, hsp, h2]=PlotStudy(data,myplot_handle)
+%% [handles, h2, hsp] = PlotStudy(data,myplot_handle)
+% Purpose: Applies a user-specified plotting function to each element of
+%     data structure. Arrays the output plots in a grid, similar to
+%     PlotData. Intended for use with results from simulation
+%     studies varying some aspect of the model or inputs. 
 %          
 % Inputs:
-%   data: DynaSim data structure (see CheckData)
-%   myfunc: Handle for plotting function. Running myfunc(data(1)) should
-%   produce a plot. These plots will be arrayed in a grid of subplots. This
-%   plotting function should not open any new figures and not contain
-%   any subplots.
+%     data: DynaSim data structure (see CheckData)
+%     myplot_handle: Handle for plotting function.
+%         **IMPORTANT**: This function should just produce a plot. It should
+%         not open any new figures or subplots. It can return an axis
+%         handle, but this is not necessary.
+% 
+% Outputs:
+%     handles: handle of the figure
+%     hsp: handle of subplot_grid object
+%     h2: return values of myplot_handle (usually will be Line handles)
 % 
 % Examples:
-% myfunc = @(x) plot(x.RS_V)
-% % Single plot
-% figure; myunc(data(1));
-% % Grid of all plots
-% PlotFunc(data,@myfunc)
+%     myfunc = @(x) plot(x.RS_V)
+%     figure; myunc(data(1));   % Single plot
+%     PlotFunc(data,@myfunc)    % Grid of all plots
 % 
-% 
+% Dependencies
+%     Uses subplot_grid.
+
 
 % data=CheckData(data);
-fields=fieldnames(data);
 handles=[];
 
 
 
     
-        %%
+        
         
         % New code (imported from PlotData)
         num_sims=length(data); % number of simulations
@@ -134,8 +137,12 @@ handles=[];
                 
                 % 1.0 plot firing rate heat map
                     %hsp.figtitle([ text_string{row,col}]);
-                    
-                    myfunc(data(i));
+                    try
+                        h2{i} = myplot_handle(data(i));
+                    catch       % If myplot_handle doesn't return an output
+                        myplot_handle(data(i));
+                        h2{i} = [];
+                    end
                     title(text_string{row,col});
                     
                     
