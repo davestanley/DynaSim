@@ -20,9 +20,17 @@ Branches:
 + master - a direct fork of Jasons code
 + dave_mods - the modded branch
 
-This fork contains David Stanley's customizations to DynaSim. Changes incliude:
+This fork contains Dave Stanley's customizations to DynaSim. Changes incliude:
 
-+ 'parallel_flag' option in SimulateModel.m now works (it will produce some warnings due to lock files on server, but these can be ignored)
-+ New plotting command PlotFR2.m, an expansion of Jason's PlotFR command with better functionality for handling parameter sweeps (only works with plotting single variables for now).
-+ Utility CalcAverages.m, which operates on a DynaSim data structure and averages over all cells. This structure can then be passed to PlotData as a means to force PlotData to produce average plots.
+Core simulator
++ **SimulateModel.m**: 'parallel_flag' now works (it will produce some warnings due to lock files on server, but these can be ignored)
+
+Plotting
++ **PlotFR2.m**: New plotting command, an expansion of Jason's PlotFR command with better functionality for handling parameter sweeps (only works with plotting single variables for now).
+
+Utilites (functions that operate on DynaSim Data Structures)
++ **ThevEquiv.m**: Calculates the Thévenin equivalent voltage and conductance for a given set of M specified ionic channels.
++ **CalcAverages.m**: which operates on a DynaSim data structure and averages over all cells. This structure can then be passed to PlotData as a means to force PlotData to produce average plots.
++ **DownsampleData**: Downsamples all data in a DynaSim data structre
++ **CalcSumOverFields.m**: Creates a new field that is the sum of a bunch of other fields (specified by the "fields" cell array). Useful for adding multiple ionic currents together.
 
